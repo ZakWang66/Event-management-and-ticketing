@@ -26,3 +26,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# Schema Design Diagram  
+https://www.lucidchart.com/invitations/accept/737f1734-85f8-4824-9e20-7b6a7e90f455
+
+# API Design
+https://docs.google.com/document/d/11OkJIyMObRAhYYXllvvC55JDAJVnIPj1qZKoFjRD_kQ/edit?usp=sharing

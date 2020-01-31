@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+video_one:
+  event: goSnowboarding
+  video: MyString
+
+video_two:
+  event: goSleeping
+  video: MyString
+
+video_three:
+  event: goSnowboarding
+  video: MyString
+
+video_four:
+  event: goSleeping
+  video: MyString

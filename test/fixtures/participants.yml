@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: mike
+  event: goSnowboarding
+  role: 0
+
+two:
+  user: mike
+  event: goSleeping
+  role: 1
+
+three:
+  user: daniel
+  event: goSnowboarding
+  role: 1
+
+four:
+  user: daniel
+  event: goSleeping
+  role: 0
