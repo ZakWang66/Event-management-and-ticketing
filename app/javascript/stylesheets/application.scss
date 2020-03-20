@@ -1,0 +1,51 @@
+@import '~bootstrap/dist/css/bootstrap';
+@import '@fortawesome/fontawesome-free';
+
+section {
+    overflow: auto;
+}
+
+.center {
+text-align: center;
+}
+
+.center h1 {
+    margin-bottom: 10px;
+}
+
+
+.navbar-nav li a {
+   line-height: 50px;
+   font-size: 20px;
+}
+
+.container {
+   max-width: 800px;
+}
+
+.bg {
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    background-image: url("../images/bg.jpg");
+    opacity: 1;
+}
+
+.title{
+  text-align: center;
+}
+
+.hr-main {
+    height: 5px;
+    background-color:#666;
+    opacity: 0.5;
+}
+
+.jumbotron {
+    background-color: white;
+    margin-top: 130px;
+}
+
+.navbar {
+    padding: 0px;
+}

@@ -11024,3 +11024,1229 @@ FOREIGN KEY ("event_id")
   [1m[36mParticipant Load (20.5ms)[0m  [1m[34mSELECT "participants".* FROM "participants" WHERE "participants"."role" = $1 ORDER BY "participants"."id" ASC LIMIT $2[0m  [["role", 1], ["LIMIT", 5]]
   [1m[36mEvent Load (31.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "participants" ON "participants"."event_id" = "events"."id" WHERE "participants"."role" = $1 ORDER BY "events"."id" ASC LIMIT $2[0m  [["role", 1], ["LIMIT", 5]]
   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "participants" ON "participants"."event_id" = "events"."id" WHERE "participants"."role" = $1 ORDER BY "events"."id" ASC LIMIT $2[0m  [["role", 1], ["LIMIT", 5]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(279088437195799245)[0m
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddGoogleAuthToUser (20200227190823)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.6ms)[0m  [1m[35mALTER TABLE "users" ADD "google_token" character varying[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "google_refresh_token" character varying[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227190823"]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(279088437195799245)[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:44:45 -0400
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dongyu/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dongyu/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 44.8ms | Allocations: 309)
+Completed 200 OK in 133ms (Views: 88.3ms | ActiveRecord: 0.0ms | Allocations: 1729)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 127ms (ActiveRecord: 14.3ms | Allocations: 4999)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 1.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 0.9ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:51 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 0.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.7ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 1.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 15ms (ActiveRecord: 4.0ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (10.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 23ms (ActiveRecord: 10.7ms | Allocations: 933)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 27ms (ActiveRecord: 2.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 12ms (ActiveRecord: 1.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 2.0ms | Allocations: 936)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 1.9ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 1.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:52 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 0.9ms | Allocations: 924)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms | Allocations: 933)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:53 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 1.1ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 1.6ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 1.9ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 4.7ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 3.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 3.0ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 27ms (ActiveRecord: 0.7ms | Allocations: 920)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:50:56 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.0ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 14ms (ActiveRecord: 3.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.1ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.6ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 1.2ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 0.9ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (5.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 5.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:02 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 1.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 4.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 1.0ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 7.0ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 0.5ms | Allocations: 918)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 1.8ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 1.1ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 0.3ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:51:32 -0400
+Processing by ProfileController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms | Allocations: 915)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:52:09 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 95)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs
+[Webpacker] warning ../../../package.json: No license field
+One CLI for webpack must be installed. These are recommended choices, delivered as separate packages:
+ - webpack-cli (https://github.com/webpack/webpack-cli)
+   The original webpack full-featured CLI.
+We will use "yarn" to install the CLI via "yarn add -D".
+Do you want to install 'webpack-cli' (yes/no): 
+[Webpacker] 
+Completed 500 Internal Server Error in 2702ms (ActiveRecord: 0.0ms | Allocations: 18032)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+:
+  app/views/layouts/application.html.erb:9
+
+Started POST "/__better_errors/a44d373da79f8110/variables" for 127.0.0.1 at 2020-03-20 14:52:12 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 14:55:17 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 206)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs
+[Webpacker] warning ../../../package.json: No license field
+One CLI for webpack must be installed. These are recommended choices, delivered as separate packages:
+ - webpack-cli (https://github.com/webpack/webpack-cli)
+   The original webpack full-featured CLI.
+We will use "yarn" to install the CLI via "yarn add -D".
+Do you want to install 'webpack-cli' (yes/no): 
+[Webpacker] 
+Completed 500 Internal Server Error in 2043ms (ActiveRecord: 0.0ms | Allocations: 9779)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+:
+  app/views/layouts/application.html.erb:9
+
+Started POST "/__better_errors/a926715de4310780/variables" for 127.0.0.1 at 2020-03-20 14:55:20 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 15:22:15 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 206)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Hash: 39b443f14928c570f23d
+Version: webpack 4.41.6
+Time: 142ms
+Built at: 03/20/2020 3:22:18 PM
+        Asset      Size  Chunks             Chunk Names
+manifest.json  23 bytes          [emitted]  
+
+ERROR in Entry module not found: Error: Can't resolve 'babel-loader' in '/home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing'
+
+
+warning ../../../package.json: No license field
+
+[1m[31mInsufficient number of arguments or no entry found.
+[1m[31mAlternatively, run 'webpack(-cli) --help' for usage info.[39m[22m
+
+
+Completed 500 Internal Server Error in 3640ms (ActiveRecord: 0.0ms | Allocations: 10779)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+  "entrypoints": {
+  }
+}
+:
+  app/views/layouts/application.html.erb:9
+
+Started POST "/__better_errors/b921b85cb5e28cfd/variables" for 127.0.0.1 at 2020-03-20 15:22:19 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 15:45:24 -0400
+  [1m[35m (16.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 206)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Hash: 39b443f14928c570f23d
+Version: webpack 4.41.6
+Time: 125ms
+Built at: 03/20/2020 3:45:28 PM
+        Asset      Size  Chunks             Chunk Names
+manifest.json  23 bytes          [emitted]  
+
+ERROR in Entry module not found: Error: Can't resolve 'babel-loader' in '/home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing'
+
+
+warning ../../../package.json: No license field
+
+[1m[31mInsufficient number of arguments or no entry found.
+[1m[31mAlternatively, run 'webpack(-cli) --help' for usage info.[39m[22m
+
+
+Completed 500 Internal Server Error in 3546ms (ActiveRecord: 0.0ms | Allocations: 9646)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+  "entrypoints": {
+  }
+}
+:
+  app/views/layouts/application.html.erb:9
+
+Started POST "/__better_errors/2911ab7b2d2572fd/variables" for 127.0.0.1 at 2020-03-20 15:45:28 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 15:46:30 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 85)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 63ms (ActiveRecord: 0.0ms | Allocations: 4010)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+  "entrypoints": {
+  }
+}
+:
+  app/views/layouts/application.html.erb:8
+
+Started POST "/__better_errors/8d597e1e22974580/variables" for 127.0.0.1 at 2020-03-20 15:46:30 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 15:47:41 -0400
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 206)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 0.0ms | Allocations: 5503)
+
+
+
+Webpacker::Manifest::MissingEntryError - Webpacker can't find application in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+  "entrypoints": {
+  }
+}
+:
+  app/views/layouts/application.html.erb:8
+
+Started POST "/__better_errors/d43c45e722cdc5e7/variables" for 127.0.0.1 at 2020-03-20 15:47:41 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:13:53 -0400
+  [1m[35m (13.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 21.6ms | Allocations: 206)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/public/packs
+[Webpacker] warning ../../../package.json: No license field
+
+[Webpacker] Hash: 0fb71b3af456a5225716
+Version: webpack 4.41.5
+Time: 7860ms
+Built at: 03/20/2020 4:14:05 PM
+                                                 Asset       Size       Chunks                         Chunk Names
+                js/application-041264d6b596bd74447d.js    3.1 MiB  application  [emitted] [immutable]  application
+            js/application-041264d6b596bd74447d.js.map   3.29 MiB  application  [emitted] [dev]        application
+                                         manifest.json  544 bytes               [emitted]              
+  media/images/bg-c2b60f3be43a9ffdf992e690a2bc1f86.jpg    405 KiB               [emitted]              
+media/images/logo-b6562661057409465d2675ca6d0b9ecd.png   7.97 KiB               [emitted]              
+Entrypoint application = js/application-041264d6b596bd74447d.js js/application-041264d6b596bd74447d.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/images sync recursive ^\.\/.*$] ./app/javascript/images sync ^\.\/.*$ 208 bytes {application} [built]
+[./app/javascript/images/bg.jpg] 98 bytes {application} [built]
+[./app/javascript/images/logo.png] 100 bytes {application} [optional] [built]
+[./app/javascript/packs/application.js] 914 bytes {application} [built]
+[./app/javascript/stylesheets/application.scss] 706 bytes {application} [built]
+[./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./app/javascript/stylesheets/application.scss] ./node_modules/css-loader/dist/cjs.js??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./app/javascript/stylesheets/application.scss 911 KiB {application} [built]
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 905 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 120 hidden modules
+
+  Rendered layouts/_header.html.erb (Duration: 0.6ms | Allocations: 80)
+Completed 200 OK in 11888ms (Views: 11830.1ms | ActiveRecord: 0.0ms | Allocations: 6110)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:18:34 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 85)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 0.0ms | Allocations: 7440)
+
+
+
+ActionView::MissingTemplate - Missing partial profile/_header, application/_header with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/dongyu/Brandeis/COSI166b/Event-management-and-ticketing/app/views"
+  * "/home/dongyu/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/kaminari-core-1.2.0/app/views"
+  * "/home/dongyu/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/actiontext-6.0.2.1/app/views"
+  * "/home/dongyu/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/actionmailbox-6.0.2.1/app/views"
+:
+  app/views/layouts/application.html.erb:14
+
+Started POST "/__better_errors/8e60e6cddfddebf1/variables" for 127.0.0.1 at 2020-03-20 16:18:34 -0400
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:18:46 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 85)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.6ms | Allocations: 73)
+Completed 200 OK in 60ms (Views: 53.8ms | ActiveRecord: 0.0ms | Allocations: 3771)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:21:47 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (17.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 78)
+Completed 200 OK in 246ms (Views: 222.8ms | ActiveRecord: 20.7ms | Allocations: 12129)
+
+
+Started GET "/profile" for 127.0.0.1 at 2020-03-20 16:21:56 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 0.1ms | Allocations: 6)
+Completed 200 OK in 56ms (Views: 54.6ms | ActiveRecord: 0.4ms | Allocations: 4709)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:22:10 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (21.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 6)
+Completed 200 OK in 89ms (Views: 66.6ms | ActiveRecord: 21.5ms | Allocations: 4753)
+
+
+Started GET "/" for 127.0.0.1 at 2020-03-20 16:23:54 -0400
+Processing by ProfileController#index as HTML
+  Rendering profile/index.html.erb within layouts/application
+  Rendered profile/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 49.7ms | Allocations: 2687)
+Completed 200 OK in 92ms (Views: 89.7ms | ActiveRecord: 0.5ms | Allocations: 6321)
+
+
+Started GET "/auth/google_oauth2" for 127.0.0.1 at 2020-03-20 16:24:01 -0400
+Started GET "/auth/google_oauth2" for 127.0.0.1 at 2020-03-20 16:24:01 -0400
