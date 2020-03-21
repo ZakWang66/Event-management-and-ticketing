@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'profile#index'
-  get 'session/googleAuth'
-  get 'session/signOut'
+  get 'sign_out', to: 'session#signOut'
+  get 'auth/:provider/callback', to: 'session#googleAuth'
+  get 'auth/failure', to: redirect('/')
   get 'session/signIn'
   get 'api/get_events', to: 'api#getElemt'
   get 'profile/edit'
