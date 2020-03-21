@@ -8,8 +8,9 @@
             <%= link_to "Sign Out", sign_out_path, class:'nav-link' %>
           </li>
         <% else %>
-          <li class="nav-item"><%= link_to "Sign in with Google", '/auth/google_oauth2', class:'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Sign In/Sign Up", sign_in_path, class:'nav-link' %></li>
         <% end %>
       </ul>
   </div>
 </nav>
+<div class="navbar-pad"></div>
