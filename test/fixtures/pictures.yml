@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+picture_one:
+  event: goSnowboarding
+  picture: MyString
+
+picture_two:
+  event: goSleeping
+  picture: MyString
+
+picture_three:
+  event: goSnowboarding
+  picture: MyString
+
+picture_four:
+  event: goSleeping
+  picture: MyString

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+goSnowboarding:
+  title: snowboard
+  price: 1.5
+  time: 2020-02-14
+  place: WM
+  description: Have a good ride
+
+goSleeping:
+  title: sleep
+  price: 1.5
+  time: 2020-02-14
+  place: Longview
+  description: zzzzzz
