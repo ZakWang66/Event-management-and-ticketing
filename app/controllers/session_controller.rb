@@ -1,5 +1,6 @@
 class SessionController < ApplicationController
-  skip_before_action :authorized, only: [:googleAuth, :verify_authenticity_token]
+  include SessionHelper
+  skip_before_action :authorized, only: [:googleAuth, :new, :create]
   def googleAuth
     # Get access tokens from the google server
     access_token = request.env["omniauth.auth"]
@@ -15,16 +16,22 @@ class SessionController < ApplicationController
     redirect_to root_path
   end
 
-  def signOut
-    session.delete(:user_id)
+  def destroy
+    log_out
     redirect_to root_path
   end
 
-  def signIn
-    
+  def new
   end
 
-  def log_in user
-    session[:user_id] = user.id
+  def create
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      log_in user
+      redirect_to root_path
+    else
+      flash.now[:danger] = 'Invalid email/password combination'
+      render 'new'
+    end
   end
 end
