@@ -1,6 +1,8 @@
 class SessionController < ApplicationController
+  skip_before_action :authorized, only: [:googleAuth, :verify_authenticity_token]
   def googleAuth
     # Get access tokens from the google server
+    byebug
     access_token = request.env["omniauth.auth"]
     user = User.from_omniauth(access_token)
     # Access_token is used to authenticate request made from the rails application to the google server

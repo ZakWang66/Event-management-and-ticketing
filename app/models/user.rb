@@ -10,4 +10,12 @@ class User < ApplicationRecord
     scope :with_co_organizers, -> { with_roles(Participant.co_organizer) }
     scope :with_audience, -> { with_roles(Participant.audience) }
     scope :with_visitors, -> { with_roles(Participant.visitor) }
+
+    def self.from_omniauth(auth)
+        # Creates a new user only if it doesn't exist
+        where(email: auth.info.email).first_or_initialize do |user|
+          user.name = auth.info.name
+          user.email = auth.info.email
+        end
+    end
 end
