@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+  skip_before_action :authorized, only: [:googleAuth, :verify_authenticity_token]
   def googleAuth
     # Get access tokens from the google server
     access_token = request.env["omniauth.auth"]
