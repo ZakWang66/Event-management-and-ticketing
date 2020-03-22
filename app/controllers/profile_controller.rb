@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
-  skip_before_action :authorized, only: [:index]
 
-  def index
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit

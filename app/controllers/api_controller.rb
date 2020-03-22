@@ -1,16 +1,9 @@
 class ApiController < ApplicationController
   def getEvents
-    events = Event.where(user: session[:user_id])
+    user_id = params[:user_id]
     curr = Time.now
-    @past_events = []
-    @future_events = []
-    events.each do |event|
-      if event.time < curr
-        @past_events.append(event)
-      else
-        @future_evetns.append(event)
-      end
-    end
-    
+    @past_participants = Participant.where(user: user_id).joins(:event).where("events.time < ?", curr).order("events.time DESC")
+    @future_participants = Participant.where(user: user_id).joins(:event).where("events.time >= ?", curr).order("events.time")
+    render partial: "get_events"
   end
 end
