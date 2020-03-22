@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'profile/changePwd'
   get 'profile/addFriend'
   get 'profile', to: 'profile#index'
+
+  get 'events', to: 'events#index'
+  post 'events', to: 'events#book'
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
