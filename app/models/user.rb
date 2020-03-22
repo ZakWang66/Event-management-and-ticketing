@@ -25,6 +25,7 @@ class User < ApplicationRecord
           user.name = auth.info.name
           user.email = auth.info.email
           user.password = "default_password"
+          user.remote_portrait_url = auth.info.image
         end
     end
 end

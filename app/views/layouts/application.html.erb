@@ -12,6 +12,7 @@
   <body>
     <div class="bg" data-spy="scroll">
       <%= render 'layouts/header' %>
+      <%= content_for :render_async %>
       
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>

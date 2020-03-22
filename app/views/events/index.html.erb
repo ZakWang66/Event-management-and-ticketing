@@ -1,0 +1,33 @@
+<section id="events">
+    <% if @events.empty? %>
+        <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
+    <% else %>
+        <% @events.each do |t| %>
+        <div class="card">
+            <div class="card-header">
+                <nav class="navbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <h5><%=t["title"]%></h5>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%=t["place"]%>
+                        <small class="form-text text-muted"><%=t["time"]%></small>
+                    </ul>
+                </nav>
+            </div>
+            <div class="card-body">
+                #pictures here<br><br>
+                <p class="card-text"><b>Ticket Price: <%=t["price"]%></b></p>
+                <% if @booked_events[t["id"]] %>
+                    <button class="btn btn-primary disabled" style="cursor:default;">Book</button>
+                <% else %>
+                    <%= button_to events_path(event_id: t["id"]), method: :post, class:"btn btn-primary"  do %>
+                        Book
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <br>
+        <% end %>
+    <% end %>                                               
+</section>
