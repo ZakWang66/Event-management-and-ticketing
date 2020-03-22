@@ -26,9 +26,12 @@ end
 users = User.all
 events = Event.all
 users.each do |user|
-    Participant.create(
-        user_id: user.id,
-        role: rand(4),
-        event_id: events.sample(1).first.id
-    )
+    sample_events=events.sample(10)
+    sample_events.each do |event|
+        Participant.create(
+            user_id: user.id,
+            role: rand(4),
+            event_id: event.id
+        )
+    end
 end
