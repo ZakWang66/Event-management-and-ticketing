@@ -11,6 +11,6 @@
     </div>
   </div>
   <div class="col-sm-8">
-    <%= render_async get_events_path(user_id: @user.id) %>
+    <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
   </div>
 </div>
