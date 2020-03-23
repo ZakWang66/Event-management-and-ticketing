@@ -1,11 +1,18 @@
 <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
   <div class="container" style="max-width: 1000px;">
-      <%= link_to image_pack_tag("logo.png", size: "80x80", class: "navbar-brand", style: "padding:0;margin:0"), root_path, id: "logo" %>
+      <%= link_to image_pack_tag("logo.png", size: "80x80", style: "padding:0;margin:0"), root_path, id: "logo", class: "navbar-brand" %>
+      <div class="collape navbar-collapse">
+        <ul class="navbar-nav">
+          <% if logged_in? %>
+            <li class="nav-item"><%= link_to "Home", index_path(current_user.id), class:'nav-link' %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "Home", root_path, class:'nav-link' %></li>
+          <% end %>
+            <li class="nav-item"><%= link_to "Events", events_path, class:'nav-link' %></li>
+          </ul>
+      </div>
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item"><%= link_to "Home", root_path, class:'nav-link' %></li>
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to "Profile", profile_path(session[:current_user_id]), class:'nav-link' %></li>
-          <li class="nav-item"><%= link_to "Events", events_path, class:'nav-link' %></li>
           <li class="nav-item"><%= link_to "Sign Out", sign_out_path, class:'nav-link' %></li>
         <% else %>
           <li class="nav-item"><%= link_to "Sign In/Sign Up", sign_in_path, class:'nav-link' %></li>

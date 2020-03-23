@@ -1,0 +1,21 @@
+<%= form_for( @user, method: "patch", remote: true, url: "/users/#{params[:id]}?field_type=#{params[:field_type]}" ) do |f| %>
+    <div class="form-group">
+        <% case params[:field_type]%>
+        <% when "email" %>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+        <% when "password" %>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        <% when "portrait" %>
+            <%= f.file_field :portrait %>
+        <% else %>
+            <%= f.label params[:field_type] %>
+            <%= f.text_field params[:field_type] %>
+        <% end %>
+    </div>
+    <div class="form-group">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+        <%= f.submit "Cancel", class: "btn btn-danger" %>
+    </div>
+<% end %>

@@ -1,5 +1,19 @@
-<% if logged_in? %>
-    <h2>Welcome!</h2>
-<% else %>
-    <h2>Please sign in or sign up</h2>
-<% end %>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Basic Profile</h3>
+        <p class="card-text">
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </p>
+        <p class="card-text">
+          <%= has_edit_permission(session[:current_user_id], @user.id)%>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
+  </div>
+</div>
