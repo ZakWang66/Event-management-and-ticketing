@@ -1,16 +1,30 @@
 <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title">Basic Profile</h3>
-        <p class="card-text">
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </p>
-      </div>
+    <div class="col-sm-3">
+        <%=gravatar_for(current_user)%>
+        <%= link_to  "edit", edit_user_path(id: current_user.id, field_type: "portrait"), remote: true, class: "btn btn-primary" %>
+        <div id="portrait"></div>
     </div>
-  </div>
-  <div class="col-sm-8">
-    <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
-  </div>
+    <div class="col-sm-9">
+        <h1><%= current_user.name %></h1>
+        <table class="table table-hover">
+          <tbody> 
+              <tr>
+              <td>Name</td>
+              <td id="name"><%= current_user.name %></td>
+              <td><%= link_to  "edit", edit_user_path(id: current_user.id, field_type: "name"), remote: true, class: "btn btn-primary" %></td>
+              </tr>
+              <tr>
+              <td>Mail</td>
+              <td id="email"><%= current_user.email %></td>
+              <td><%= link_to  "edit", edit_user_path(id: current_user.id, field_type: "email"), remote: true, class: "btn btn-primary" %></td>
+              </tr>
+              <tr>
+              <td>Password</td>
+              <td id="password">*********</td>
+              <td><%= link_to  "edit", edit_user_path(id: current_user.id, field_type: "password"), remote: true, class: "btn btn-primary" %></td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
 </div>
+

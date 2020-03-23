@@ -1,0 +1,3 @@
+<% if params[:field_type] != 'portrait' %>
+    <%= current_user.send(params[:field_type]) %>
+<% end %>
