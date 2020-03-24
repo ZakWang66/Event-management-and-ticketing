@@ -2,17 +2,21 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("bootstrap-fileinput/js/fileinput")
 
 import 'jquery'
 import 'popper.js'
 import 'bootstrap'
+import "@fortawesome/fontawesome-free/js/all"
+// import 'mdbootstrap/js/mdb'
 import '../stylesheets/application'
-import "@fortawesome/fontawesome-free/js/all";
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
