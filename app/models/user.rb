@@ -11,6 +11,8 @@ class User < ApplicationRecord
     has_many :participants
     has_many :events, through: :participants
 
+    has_many :posts
+
     scope :with_roles, -> (roles) {
         joins(:participants).merge(roles)
     }

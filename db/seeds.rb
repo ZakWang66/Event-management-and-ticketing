@@ -35,3 +35,20 @@ users.each do |user|
         )
     end
 end
+events.each do |event|
+    sample_users = users.sample(2)
+    post = nil
+    sample_users.each do |user|
+        post = Post.create(
+            author: user,
+            event: event
+        )
+    end
+    sample_users.each do |user|
+        Post.create(
+            author: user,
+            event: event,
+            parent: post
+        )
+    end
+end
