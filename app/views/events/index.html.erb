@@ -21,7 +21,7 @@
                 <% if @booked_events[t["id"]] %>
                     <button class="btn btn-primary disabled" style="cursor:default;">Book</button>
                 <% else %>
-                    <%= button_to events_path(event_id: t["id"]), method: :post, class:"btn btn-primary"  do %>
+                    <%= button_to book_event_path(event_id: t["id"]), method: :post, class:"btn btn-primary"  do %>
                         Book
                     <% end %>
                 <% end %>

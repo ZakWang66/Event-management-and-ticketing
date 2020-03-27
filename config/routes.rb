@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   patch 'users/:id/update_pwd', to: 'users#updatePassword', as: 'update_pwd'
   get 'profile', to: 'profile#show'
   get 'api/get_events', to: 'api#getEvents', as: 'get_events'
-  get 'events', to: 'events#index'
-  post 'events', to: 'events#book'
+  post 'events/book', to: 'events#book', as: 'book_event'
   get ':user_id', to: 'index#show', as: 'index'
   resources :users
+  resources :events
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
