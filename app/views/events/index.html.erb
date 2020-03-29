@@ -1,36 +1,43 @@
 <section id="events">
-    <%= link_to "new event", "/events/new", method: :get %>
-    <% if @events.empty? %>
+
+    
+    <a href="/events/new"><%= octicon "plus", id: "logo" %></a>
+    <% if @event.empty? %>
         <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
     <% else %>
-        <% @events.each do |t| %>
-        <div class="card">
-            <div class="card-header">
-                <nav class="navbar">
-                    <ul class="nav navbar-nav navbar-left">
-                        <h5><%=t["title"]%></h5>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <%= render 'sortTab' %> 
+                        </li>
+                        <li class="nav-item">
+                            <%= render 'filter' %> 
+                        </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <%=t["place"]%>
-                        <small class="form-text text-muted"><%=t["time"]%></small>
-                    </ul>
-                </nav>
-            </div>
-            <div class="card-body">
-                #pictures here<br><br>
-                <p class="card-text"><b>Ticket Price: <%=t["price"]%></b></p>
-                <div class="row" style="padding-left:10px;">
-                    <%= button_to book_event_path(event_id: t["id"]), method: :post, class:"btn btn-primary"  do %>
-                        Book
-                    <% end %>
-                    &nbsp;&nbsp;
-                    <%= button_to "/events/#{t["id"]}/edit", method: :get, class:"btn btn-primary" do %>
-                        Edit
+                    <div class = "my-2 my-lg-0">
+                        <%= render 'search' %>
+                    </div>
+                </div>
+            </nav>
+            <div>
+            <% @event.each_slice(3) do |e| %>
+                <div class = "row">
+                    <% @event.each do |e| %>
+                        <div class="image col-sm-4">
+                            <%=image_tag(Picture.where(event_id: 1).first.picture.url, alt: "image", class: "gravatar")%>
+                            <div class="mask-middle">
+                                <%= button_to "/events/#{e[:id]}", method: :get, class:"btn btn-primary" do %>
+                                    View
+                                <% end %>  
+                            </div>
+                        </div>
                     <% end %>
                 </div>
-            </div>
+            <% end %>
+            <br>
         </div>
-        <br>
-        <% end %>
     <% end %>                                               
 </section>
+
+

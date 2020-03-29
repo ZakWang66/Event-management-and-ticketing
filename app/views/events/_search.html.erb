@@ -1,0 +1,4 @@
+<%= form_for "", url: events_path, role: "search", method: :get do %>
+  <%= text_field_tag :title, @search_term, placeholder: "Search ..."%>
+  <%= submit_tag("Search") %>
+<% end %>
