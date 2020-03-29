@@ -1,0 +1,102 @@
+<div class="card">
+
+  <div class="card-header">
+    <nav class="navbar">
+      <ul class="nav navbar-nav navbar-left">
+        <h5><b><%=@title%></b></h5>
+      </ul>
+    </nav>
+  </div>
+
+  
+
+  <%= form_tag("/events", id:"info", method:"post", style:"padding: 40px;") do %>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" name="title" id="title" value="<%=@event[:title]%>" required>
+      <small class="form-text text-muted">Title of the event</small>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label>Time</label>
+      <input type="text" class="form-control" name="time" id="time" value="<%=@event[:time]%>" required>
+      <small class="form-text text-muted">Time when the event begins</small>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label>Place</label>
+      <input type="text" class="form-control" name="place" id="place" value="<%=@event[:place]%>" required>
+      <small class="form-text text-muted">Place of the event</small>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input type="text" class="form-control" name="price" id="price" value="<%=@event[:price]%>">
+      <small class="form-text text-muted">[Optional] Price of the event ticket</small>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" name="description" id="description" required><%=@event[:description]%></textarea>
+      <small class="form-text text-muted">Event description</small>
+    </div>
+    <br>
+
+  <% end %>
+
+  <div style="padding: 40px;">
+    <label>Images</label>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <% @pictures.each { |p| %>
+            <div class="image col-sm-4">
+              <%=image_tag(p.picture.url, alt: "image", class: "gravatar")%>
+              <div class="mask-middle">
+                <%= button_to "/events/picture/delete/#{@event[:id]}/#{p[:id]}", method: :post, class:"btn btn-primary" do %>
+                  Remove
+                <% end %>  
+              </div>
+            </div>
+          <% } %>
+        </div>
+        <br><br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_img">Upload image</button>
+      </div>
+    </div>
+    <br><br>
+    <button type="submit" form="info" class="btn btn-primary">Submit</button>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add_img" tabindex="-1" role="dialog" aria-labelledby="add_img_label" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <%= form_for( @event, method: "post", url: "/events/picture/upload/#{@event[:id]}" ) do |f| %>
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="add_img_label">Edit Profile</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <%= f.file_field :picture %>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group row">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                 &nbsp; &nbsp;
+                <%= f.submit "Save", class: "btn btn-primary" %>
+            </div>
+        </div>
+        </div>
+    <% end %>
+</div>
+</div>
