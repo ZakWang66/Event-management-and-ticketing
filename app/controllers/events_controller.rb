@@ -1,12 +1,20 @@
 class EventsController < ApplicationController
     skip_before_action :authorized, only: [:index]
     def index
-        @booked_events = []
-        participating_events = Participant.where(user_id:session[:current_user_id])
-        participating_events.each { |x|
-            @booked_events[x.event_id] = true
-        }
-        @events = Event.all
+        if params[:title]
+            @event = Event.where("title LIKE ?", "%#{params[:title]}%")
+        elsif params[:sort_by]
+            @event = Event.order_list(params[:sort_by])
+        elsif params[:filt_by]
+            if params[:filt_by] == "more than 1000"
+                @event = Event.where("price > ?", 1000)
+            else
+                conditions = params[:filt_by].split("-")
+                @event = Event.filter_by_price(conditions)
+            end
+        else
+            @event = Event.all
+        end
     end
 
     
