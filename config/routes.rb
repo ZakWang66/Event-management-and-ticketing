@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'events/picture/delete/:id/:p_id', to: 'events#delete_img'
   resources :users
   resources :events
+  resources :posts
   get ':user_id', to: 'index#show', as: 'index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
