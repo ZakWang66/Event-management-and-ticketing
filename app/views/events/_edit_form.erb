@@ -10,7 +10,7 @@
 
   
 
-  <%= form_tag("/events", id:"info", method:"post", style:"padding: 40px;") do %>
+  <%= form_tag(@url, id: "info", method: @method, style: "padding: 40px;") do %>
 
     <div class="form-group">
       <label>Title</label>
@@ -45,32 +45,14 @@
       <textarea class="form-control" name="description" id="description" required><%=@event[:description]%></textarea>
       <small class="form-text text-muted">Event description</small>
     </div>
-    <br>
 
   <% end %>
 
   <div style="padding: 40px;">
-    <label>Images</label>
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <% @pictures.each { |p| %>
-            <div class="image col-sm-4">
-              <%=image_tag(p.picture.url, alt: "image", class: "gravatar")%>
-              <div class="mask-middle">
-                <%= button_to "/events/picture/delete/#{@event[:id]}/#{p[:id]}", method: :post, class:"btn btn-primary" do %>
-                  Remove
-                <% end %>  
-              </div>
-            </div>
-          <% } %>
-        </div>
-        <br><br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_img">Upload image</button>
-      </div>
-    </div>
-    <br><br>
-    <button type="submit" form="info" class="btn btn-primary">Submit</button>
+    <% if @title == "Edit Event" %>
+      <%= render 'image_upload' %>
+    <% end %>
+  <button type="submit" form="info" class="btn btn-primary">Submit</button>
   </div>
 
 </div>

@@ -17,6 +17,7 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
+      <%# <div style="padding: 20px;"> %>
       <div class="jumbotron container">
         <%= yield %>
       </div>

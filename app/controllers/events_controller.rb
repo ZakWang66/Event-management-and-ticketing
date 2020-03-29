@@ -11,6 +11,8 @@ class EventsController < ApplicationController
 
     
     def new
+        @url = "/events"
+        @method = "post"
         @event = Event.new
         @pictures = []
         @title = "New Event"
@@ -35,12 +37,35 @@ class EventsController < ApplicationController
 
     def edit
         # authorized_to_edit(params[:id])
+        @url = "/events/#{params[:id]}"
+        @method = "patch"
         @title = "Edit Event"
         @event = Event.find(params[:id])
         @pictures = Picture.where(event_id:params[:id])
     end
 
-    def detail
+    def update
+        e = Event.find(params[:id])
+        if e.nil?
+            flash[:danger]  = "No such event"
+        else
+            e.update(
+                title:params[:title],
+                price:params[:price],
+                time: params[:time],
+                place:params[:place],
+                description:params[:description],
+                created_at:Time.now.to_s
+            )
+            flash[:success]  = "Event updated"
+        end
+        redirect_to "/events"
+    end
+
+    def show
+        @event = Event.find(params[:id])
+        @pictures = Picture.where(event_id:params[:id])
+        @count = 0
     end
 
     def add_img
