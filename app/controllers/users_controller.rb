@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :authorized, only: [:new, :create]
+    require_relative '../forms/change_password_form'
+
     def show
         @user = User.find(params[:id])
     end
@@ -22,6 +24,9 @@ class UsersController < ApplicationController
         @user = current_user
     end
 
+    def editPassword
+    end
+
     def update
         @user = current_user
         if params[:commit] == 'Save'
@@ -32,6 +37,17 @@ class UsersController < ApplicationController
                 render 'edit'
             end
         end
+    end
+
+    def updatePassword
+        
+        @pass_form = ChangePasswordForm.new(current_user)
+        if @pass_form.submit(params[:pass_form])
+            flash[:success] = "Edit success"
+        else
+            flash[:danger] = "Edit fails"
+        end
+        redirect_to profile_path
     end
 
     private

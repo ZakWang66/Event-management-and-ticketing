@@ -1,12 +1,17 @@
 @import '~bootstrap/dist/css/bootstrap';
 @import '@fortawesome/fontawesome-free';
+@import '~bootstrap-fileinput/scss/fileinput.scss';
+// $roboto-font-path: '~mdbootstrap/font/roboto/' !default;
+
+// // MDB main scss file
+// @import 'mdbootstrap/scss/mdb.scss';
 
 section {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .center {
-text-align: center;
+    text-align: center;
 }
 
 .center h1 {
@@ -54,17 +59,6 @@ text-align: center;
     padding: 0px;
 }
 
-
-input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
-    width: 100%;
-    margin-bottom: 15px;
-}
-  
-input {
-    height: auto !important;
-}
-
 #error_explanation {
     color: red;
     ul {
@@ -81,4 +75,62 @@ input {
 .gravatar {
     height: 80px;
     width: 80px;
+}
+
+.image {
+    position: relative;
+}
+
+.image .gravatar {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.mask-middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+  
+.image:hover .gravatar{
+    opacity: 0.3;
+}
+  
+.image:hover .mask-middle {
+    opacity: 1;
+}
+  
+.text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+.post-header-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.post-header .gravatar {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+.reply {
+    margin-top: 5px;
+}
+
+.root {
+    margin-top: 10px;
 }

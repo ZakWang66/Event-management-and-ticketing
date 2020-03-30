@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  root: false
+  reply: one
+  content: MyText
+  author: one
+
+two:
+  event: two
+  root: false
+  reply: two
+  content: MyText
+  author: two
