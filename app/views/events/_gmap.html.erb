@@ -4,20 +4,20 @@
   </script>
 
   <script>
-  function initialize() {
-    var loc = {lat: -23.7339834, lng: 133.8694412};
-    var mapProp = {
-      center:loc,
-      zoom:16,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-      };
-    var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    bounds  = new google.maps.LatLngBounds();
-    var marker = new google.maps.Marker({position: loc, map: map});
-    bounds.extend(loc);
-    map.panToBounds(bounds);
+  function initialize()
+  {
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 </head>
+
+<body>
+  <div id="googleMap" style="width:500px;height:380px;"></div>
+</body>

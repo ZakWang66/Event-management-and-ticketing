@@ -11,6 +11,8 @@ class User < ApplicationRecord
     has_many :participants
     has_many :events, through: :participants
 
+    has_many :posts
+
     scope :with_roles, -> (roles) {
         joins(:participants).merge(roles)
     }
@@ -18,6 +20,14 @@ class User < ApplicationRecord
     scope :with_co_organizers, -> { with_roles(Participant.co_organizer) }
     scope :with_audience, -> { with_roles(Participant.audience) }
     scope :with_visitors, -> { with_roles(Participant.visitor) }
+
+    scope :get_user_dict, -> (user_ids) {
+        dict = {}
+        find(user_ids).each do |user|
+            dict[user.id] = user
+        end
+        return dict
+    }
 
     def self.from_omniauth(auth)
         # Creates a new user only if it doesn't exist
