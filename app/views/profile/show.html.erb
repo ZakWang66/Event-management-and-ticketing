@@ -20,9 +20,10 @@
                         <%= f.file_field :portrait, class: 'file'%>
                     </div>
                     <div class="modal-footer">
-                        <div class="form-group row">
-                            <button type="button" class="btn btn-secondary col-sm-6" data-dismiss="modal">Close</button>
-                            <%= f.submit "Save", class: "btn btn-primary col-sm-6" %>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            &nbsp &nbsp
+                            <%= f.submit "Save", class: "btn btn-primary" %>
                         </div>
                     </div>
                     </div>
@@ -35,7 +36,7 @@
     <div class="col-sm-9">
         <h1><%= current_user.name %></h1>
         <table class="table table-hover">
-          <tbody> 
+            <tbody> 
               <tr>
               <td>Name</td>
               <td id="name"><%= current_user.name %></td>
@@ -77,17 +78,19 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <div class="form-group row">
-                                        <button type="button" class="btn btn-secondary col-sm-6" data-dismiss="modal">Close</button>
-                                        <%= f.submit "Authentication", class: "btn btn-primary col-sm-6" %>
+                                    <div class="form-group text-right">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        &nbsp &nbsp
+                                        <%= f.submit "Authentication", class: "btn btn-primary" %>
                                     </div>
                                 </div>
                             </div>
                         <% end %>
                     </div>
                 </div>
+              </td>
               </tr>
-          </tbody>
+            </tbody>
       </table>
     </div>
 </div>

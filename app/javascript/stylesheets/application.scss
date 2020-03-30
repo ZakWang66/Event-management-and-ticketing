@@ -7,11 +7,11 @@
 // @import 'mdbootstrap/scss/mdb.scss';
 
 section {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .center {
-text-align: center;
+    text-align: center;
 }
 
 .center h1 {
@@ -116,3 +116,31 @@ text-align: center;
     padding: 16px 32px;
 }
 
+.post-header-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.post-header .gravatar {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+.reply {
+    margin-top: 5px;
+}
+
+.root {
+    margin-top: 10px;
+}
+
+.forum {
+    max-width: 1000px;
+}
+
+.detail {
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-right:15px;
+}

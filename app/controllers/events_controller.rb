@@ -1,20 +1,24 @@
 class EventsController < ApplicationController
     skip_before_action :authorized, only: [:index]
     def index
+        @events = Event.all
         if params[:title]
-            @event = Event.where("title LIKE ?", "%#{params[:title]}%")
-        elsif params[:sort_by]
-            @event = Event.order_list(params[:sort_by])
-        elsif params[:filt_by]
+            @events = @events.where("title LIKE ?", "%#{params[:title]}%")
+        end
+
+        if params[:sort_by]
+            @events = @events.order_list(params[:sort_by])
+        end
+
+        if params[:filt_by]
             if params[:filt_by] == "more than 1000"
-                @event = Event.where("price > ?", 1000)
+                @events = @events.where("price > ?", 1000)
             else
                 conditions = params[:filt_by].split("-")
-                @event = Event.filter_by_price(conditions)
+                @events = @events.filter_by_price(conditions)
             end
-        else
-            @event = Event.all
         end
+        @events = @events.paginate(page: params[:page], per_page: 24)
     end
 
     
@@ -69,7 +73,7 @@ class EventsController < ApplicationController
             )
             flash[:success]  = "Event updated"
         end
-        redirect_to "/events"
+        redirect_to event_path(params[:id])
     end
 
     def show
@@ -85,7 +89,7 @@ class EventsController < ApplicationController
             participant_relation = false
         end
         @canBook = !is_expired_event(@event) && participant_relation
-        @cust_style = {side:60, top:40, bottom:50}
+        # @cust_style = {side:60, top:40, bottom:50}
     end
 
     def add_img

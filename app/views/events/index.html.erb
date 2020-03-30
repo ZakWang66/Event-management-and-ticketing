@@ -1,13 +1,15 @@
-<section id="events">
-
-    
-    <a href="/events/new"><%= octicon "plus", id: "logo" %></a>
-    <% if @event.empty? %>
+<div calss="card">
+    <% if @events.empty? %>
         <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
     <% else %>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+        <div class="card-header">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container" style="max-width: 1000px;">
+                <%= button_to "/events/new", method: :get, class:"btn btn-secondary" do %>
+                    <%= octicon "plus", size: "80x80", style: "padding:0;margin:0" %>
+                <% end %>
+                <div class="collape navbar-collapse">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <%= render 'sortTab' %> 
                         </li>
@@ -15,29 +17,21 @@
                             <%= render 'filter' %> 
                         </li>
                     </ul>
-                    <div class = "my-2 my-lg-0">
-                        <%= render 'search' %>
-                    </div>
                 </div>
+                <ul class="navbar-nav navbar-right">
+                    <%= render 'search' %>
+                </ul>
+            </div>
             </nav>
-            <div>
-            <% @event.each_slice(3) do |e| %>
-                <div class = "row">
-                    <% @event.each do |e| %>
-                        <div class="image col-sm-4">
-                            <%=image_tag(Picture.where(event_id: 1).first.picture.url, alt: "image", class: "gravatar")%>
-                            <div class="mask-middle">
-                                <%= button_to "/events/#{e[:id]}", method: :get, class:"btn btn-primary" do %>
-                                    View
-                                <% end %>  
-                            </div>
-                        </div>
-                    <% end %>
-                </div>
-            <% end %>
-            <br>
         </div>
-    <% end %>                                               
-</section>
+        <div class="card-body">
+            <div id="events">
+                <%= render 'event' %>
+            <br>
+            </div>
+        </div>
+        <%= will_paginate :partial => 'event' %>
+    <% end %> 
+</div>                                           
 
 
