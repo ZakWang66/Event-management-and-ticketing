@@ -1,0 +1,35 @@
+<% posts.each_with_index do |post, i| %>
+  <% user = post.author %>
+  <% new_id = depth == 0 ? i.to_s : id + '-' + i.to_s %>
+  <% if depth == 0 %>
+  <div class="row root">
+  <% else %>
+  <div class="row reply">
+  <% end %>
+    <div class=<%= "col-" + depth.to_s %>></div>
+    <div class="col">
+      <div class="card" id=<%= new_id %>>
+        <div class="card-header post-header">
+          <%= gravatar_for(user) %>
+          <div class="post-header-text">
+            <b><%= "Re: " if depth != 0 %> <%= post.title %></b>
+            <br>
+            By <%= user.name %> - <%= post.updated_at %>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.content %></p>
+          <div class="text-right">
+            <% if current_user?(post.author) %>
+              <%= link_to  "delete", post, controller: 'posts', method: 'delete', data: {confirm: "You sure"} %> &nbsp &nbsp
+              <%= link_to  "edit", edit_post_path(id: post.id, ix: new_id, event_id: post.event_id), remote: true %> &nbsp &nbsp
+            <% end %>
+            <%= link_to  "reply", new_post_path(event_id: post.event_id, user_id: current_user.id, parent_id: post.id, ix: new_id), remote: true %>
+          </div>
+        </div>
+        <div class="post-form"></div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: "posts", object: post.replies, as: :posts, locals: {depth: depth + 1, id: new_id} %>
+<% end %>

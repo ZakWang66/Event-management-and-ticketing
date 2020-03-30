@@ -5,6 +5,8 @@ class Event < ApplicationRecord
     has_many :pictures
     has_many :videos
 
+    has_many :posts
+
     scope :with_roles, -> (roles) {
         joins(:participants).merge(roles)
     }

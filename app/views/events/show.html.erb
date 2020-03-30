@@ -1,14 +1,14 @@
 <div class="card" style="padding-bottom: 15px;">
   <div class="card-body">
-    <div class="row">
-      <div style="width: 780px; height: 400px; padding-left: 30px; padding-top: 15px;">
+    <div class="row justify-content-center detail">
+      <div class="col-md-6 align-self-center">
         <% if !@pictures.empty? %>
           <%= render 'image_show' %>
         <% else %>
-        <%=image_pack_tag("no_image.jpg", size: "750x422", style: "padding:0;margin:0")%>
+        <%=image_pack_tag("no_image.jpg", class: "img-fluid", style: "padding:0;margin:0")%>
         <% end %>
       </div>
-      <div style="padding-left: 50px; padding-top: 15px;">
+      <div class="col-md-6 align-self-center">
         <div class="row">
           <% if @event.time > Time.now %>
             <h6 class="p-2 rounded-pill bg-success text-light">
@@ -41,7 +41,7 @@
         </h6>
         <div style="padding-top: 20px;">
           <%=render 'gmap'%>
-          <div id="googleMap" style="width:420px;height:273px;"></div>
+          <div id="googleMap" style="width:300px;height:200px;"></div>
         </div>
       </div>
     </div>
@@ -66,8 +66,16 @@
         <% end %>
       </div>
     <% end %>
-  </div>
+    </div>
   <h6 style="padding-top: 10px;">
     <%=@event["description"] %>
   </h6>
+</div>
+<br>
+<div class="container" style="max-width:1000px">
+<section id="forum">
+  <h2 class="title">Forum</h2>
+  <%= render_async get_forum_path(event_id: @event.id), 'data-turbolinks-track': 'reload' %>
+  <%= render partial: "posts/new_modal" %>
+</section>
 </div>
