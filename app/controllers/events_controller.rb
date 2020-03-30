@@ -69,7 +69,7 @@ class EventsController < ApplicationController
             )
             flash[:success]  = "Event updated"
         end
-        redirect_to "/events"
+        redirect_to event_path(params[:id])
     end
 
     def show
@@ -85,7 +85,7 @@ class EventsController < ApplicationController
             participant_relation = false
         end
         @canBook = !is_expired_event(@event) && participant_relation
-        @cust_style = {side:60, top:40, bottom:50}
+        # @cust_style = {side:60, top:40, bottom:50}
     end
 
     def add_img
