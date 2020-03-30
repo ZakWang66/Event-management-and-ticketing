@@ -17,16 +17,7 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <% if !@cust_style.nil? %>
-        <div class="jumbotron" style="
-          margin-left: <%=@cust_style[:side]%>px; 
-          margin-right: <%=@cust_style[:side]%>px;
-          margin-top: <%=@cust_style[:top]%>px;
-          margin-bottom: <%=@cust_style[:bottom]%>px;
-          padding: 0px;">
-      <% else %>
         <div class="jumbotron container">
-      <% end %>
         <%= yield %>
       </div>
     </div>
