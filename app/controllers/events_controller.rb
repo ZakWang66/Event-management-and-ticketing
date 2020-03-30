@@ -138,7 +138,7 @@ class EventsController < ApplicationController
     private
 
     def authorized_to_edit(e_id)
-        if session[:current_user_id] != Participant.where(event_id:e_id, role:1).first.user_id
+        if Participant.where(event_id:e_id, role:1).nil? || session[:current_user_id] != Participant.where(event_id:e_id, role:1).first.user_id
             flash[:danger] = "You cannot edit this page."
             redirect_to "/events/#{e_id}"
         end
