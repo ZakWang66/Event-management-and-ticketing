@@ -3,15 +3,19 @@ class EventsController < ApplicationController
     def index
         @events = Event.all
         if params[:title]
-            @events = Event.where("title LIKE ?", "%#{params[:title]}%")
-        elsif params[:sort_by]
-            @events = Event.order_list(params[:sort_by])
-        elsif params[:filt_by]
+            @events = @events.where("title LIKE ?", "%#{params[:title]}%")
+        end
+
+        if params[:sort_by]
+            @events = @events.order_list(params[:sort_by])
+        end
+
+        if params[:filt_by]
             if params[:filt_by] == "more than 1000"
-                @events = Event.where("price > ?", 1000)
+                @events = @events.where("price > ?", 1000)
             else
                 conditions = params[:filt_by].split("-")
-                @events = Event.filter_by_price(conditions)
+                @events = @events.filter_by_price(conditions)
             end
         end
         @events = @events.paginate(page: params[:page], per_page: 24)
