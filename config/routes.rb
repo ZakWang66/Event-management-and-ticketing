@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'profile#show'
   get 'api/get_events', to: 'api#getEvents', as: 'get_events'
   post 'events/book', to: 'events#book', as: 'book_event'
+  post 'events/cancel', to: 'events#cancel', as: 'cancel_event'
   post 'events/picture/upload/:id', to: 'events#add_img'
   post 'events/picture/delete/:id/:p_id', to: 'events#delete_img'
   resources :users

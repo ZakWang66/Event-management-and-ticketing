@@ -40,11 +40,12 @@ class EventsController < ApplicationController
         else
             flash[:danger]  = "Some problem occours, event was not created"
         end
+        Participant.create(user_id:session[:current_user_id], event_id:e.id, role: :organizer)
         redirect_to "/events"
     end
 
     def edit
-        # authorized_to_edit(params[:id])
+        authorized_to_edit(params[:id])
         @url = "/events/#{params[:id]}"
         @method = "patch"
         @title = "Edit Event"
@@ -53,6 +54,7 @@ class EventsController < ApplicationController
     end
 
     def update
+        authorized_to_edit(params[:id])
         e = Event.find(params[:id])
         if e.nil?
             flash[:danger]  = "No such event"
@@ -72,8 +74,18 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        puts @event.inspect
         @pictures = Picture.where(event_id:params[:id])
         @count = 0
+        participant_relation = @event.participants.where(user_id:session[:current_user_id])
+        @isBooked = !participant_relation.empty? && participant_relation.first.role == "audience"
+        if participant_relation.empty? || participant_relation.first.role == "visitor" || participant_relation.first.role == "audience"
+            participant_relation = true
+        else
+            participant_relation = false
+        end
+        @canBook = !is_expired_event(@event) && participant_relation
+        @cust_style = {side:60, top:40, bottom:50}
     end
 
     def add_img
@@ -100,16 +112,27 @@ class EventsController < ApplicationController
     end
 
     def book
-        if Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).empty?
-            if Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :visitor)
-                flash[:success] = "Thank you. You have successfully booked this event! user:#{session[:current_user_id]}, event#{params[:event_id]}"
+        if !is_expired_event(Event.find(params[:event_id])) && Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).empty?
+            if Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :audience)
+                flash[:success] = "Thank you. You have successfully booked this event!"
             else
-                flash[:danger] = "Some problem occoured user:#{session[:current_user_id]}, event:#{params["event_id"]}"
+                flash[:danger] = "Some problem occoured while trying to book"
             end
         else
             flash[:danger] = "You cannot book that event again"
         end
-        redirect_to events_path
+        redirect_to "/events/#{params[:event_id]}"
+    end
+
+    def cancel
+        p = Participant.find_by(user_id:session[:current_user_id], event_id:params[:event_id], role: :audience)
+        if is_expired_event(Event.find(params[:event_id])) || p.nil?
+            flash[:danger] = "You cannot cancel"
+        else
+            p.destroy
+            flash[:success] = "You have canceled your book"
+        end
+        redirect_to "/events/#{params[:event_id]}"
     end
 
     private
@@ -117,7 +140,12 @@ class EventsController < ApplicationController
     def authorized_to_edit(e_id)
         if session[:current_user_id] != Participant.where(event_id:e_id, role:1).first.user_id
             flash[:danger] = "You cannot edit this page."
-            redirect_to '/events'
+            redirect_to "/events/#{e_id}"
         end
     end
+
+    def is_expired_event(event)
+        return event.time < Time.now
+    end
+
 end
