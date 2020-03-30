@@ -18,6 +18,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
+gem 'octicons_helper'
+
 gem 'carrierwave'
 gem 'kaminari'
 gem 'faker'
@@ -25,6 +27,7 @@ gem 'bcrypt'
 gem 'omniauth-google-oauth2'
 gem "better_errors"
 gem 'render_async'
+gem 'will_paginate'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

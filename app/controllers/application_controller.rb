@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
     before_action :authorized
     helper_method :current_user
+    helper_method :current_user?
     helper_method :logged_in?
     def current_user
         return unless session[:current_user_id]
         @current_user ||= User.find_by(id: session[:current_user_id])
+    end
+
+    def current_user?(user)
+        return current_user == user
     end
 
     def logged_in?

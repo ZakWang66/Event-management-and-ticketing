@@ -2,12 +2,13 @@
   "name": "event_management_and_ticketing",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "bootstrap": "^4.4.1",
+    "bootstrap-fileinput": "^5.0.8",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"

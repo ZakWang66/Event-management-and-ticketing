@@ -14,6 +14,9 @@ module ApiHelper
                         <p class=\"card-text\">Place: #{event.place}</p>
                         <p class=\"card-text\">Time: #{event.time}</p>
                         <p class=\"card-text\">Role: #{participant.role}</p>
+                        <form action=\"/events/#{event[:id]}\" method=\"get\">
+                            <button type=\"submit\" class=\"btn btn-warning\">View</button>
+                        </form>
                     </div>
                 </div>"
             end

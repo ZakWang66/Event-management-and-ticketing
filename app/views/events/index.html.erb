@@ -1,33 +1,37 @@
-<section id="events">
+<div calss="card">
     <% if @events.empty? %>
         <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
     <% else %>
-        <% @events.each do |t| %>
-        <div class="card">
-            <div class="card-header">
-                <nav class="navbar">
-                    <ul class="nav navbar-nav navbar-left">
-                        <h5><%=t["title"]%></h5>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <%=t["place"]%>
-                        <small class="form-text text-muted"><%=t["time"]%></small>
-                    </ul>
-                </nav>
-            </div>
-            <div class="card-body">
-                #pictures here<br><br>
-                <p class="card-text"><b>Ticket Price: <%=t["price"]%></b></p>
-                <% if @booked_events[t["id"]] %>
-                    <button class="btn btn-primary disabled" style="cursor:default;">Book</button>
-                <% else %>
-                    <%= button_to events_path(event_id: t["id"]), method: :post, class:"btn btn-primary"  do %>
-                        Book
-                    <% end %>
+        <div class="card-header">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container" style="max-width: 1000px;">
+                <%= button_to "/events/new", method: :get, class:"btn btn-secondary" do %>
+                    <%= octicon "plus", size: "80x80", style: "padding:0;margin:0" %>
                 <% end %>
+                <div class="collape navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <%= render 'sortTab' %> 
+                        </li>
+                        <li class="nav-item">
+                            <%= render 'filter' %> 
+                        </li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav navbar-right">
+                    <%= render 'search' %>
+                </ul>
+            </div>
+            </nav>
+        </div>
+        <div class="card-body">
+            <div id="events">
+                <%= render 'event' %>
+            <br>
             </div>
         </div>
-        <br>
-        <% end %>
-    <% end %>                                               
-</section>
+        <%= will_paginate :partial => 'event' %>
+    <% end %> 
+</div>                                           
+
+

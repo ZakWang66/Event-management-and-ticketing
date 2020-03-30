@@ -1,0 +1,38 @@
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <% if @pictures.length > 1 %>
+    <ol class="carousel-indicators">
+      <% @pictures.each { |p| %>
+          <li data-target="#carouselExampleIndicators" data-slide-to=<%@count%> 
+              <% if @count == 0 %>
+                  class="active"
+              <% end%>
+          ></li>
+          <% @count += 1 %>
+      <% } %>
+      <% @count = 0 %>
+    </ol>
+  <% end %>
+  <div class="carousel-inner">
+    <% @pictures.each { |p| %>
+        <div class="carousel-item 
+            <% if @count == 0 %>
+                active
+            <% end %>
+        ">
+            <%=image_tag(p.picture.url, alt: "image", class: "d-block img-fluid")%>
+            <% @count += 1 %>
+        </div>
+    <% } %>
+  </div>
+  <% if @pictures.length > 1 %>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  <% end %>
+</div>
