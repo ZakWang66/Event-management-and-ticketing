@@ -1,0 +1,11 @@
+<% @result.each do |user| %>
+	<li class="list-group-item d-flex justify-content-between align-items-center">
+		<%= link_to user.name, index_path(user_id: user.id) %>
+		<% if current_user.following?(user) %>
+			<%= button_to "unfollow", follows_path(user_id: current_user.id, followee_id: user.id), method: "delete", class:"btn btn-danger" %>
+		<% else %>
+			<%= button_to "follow", follows_path(user_id: current_user.id, followee_id: user.id), class:"btn btn-primary" %>
+		<% end %>
+	</li>
+<% end %>
+<div class="d-flex justify-content-center"><%= paginate @result, remote: true, window: 1 %></div>

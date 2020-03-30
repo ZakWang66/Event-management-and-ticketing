@@ -8,10 +8,18 @@
           <%= @user.name %>
         </p>
         <p class="card-text">
-          <%= has_edit_permission(session[:current_user_id], @user.id)%>
+          <% if current_user?(@user) %>
+            <%= link_to  "Edit profile", profile_path %>
+          <% elsif current_user.following?(@user) %>
+            <%= button_to "unfollow", follows_path(user_id: current_user.id, followee_id: @user.id), method: "delete", class:"btn btn-danger" %>
+          <% else %>
+            <%= button_to "follow", follows_path(user_id: current_user.id, followee_id: @user.id), class:"btn btn-primary" %>
+          <% end %>
         </p>
       </div>
     </div>
+    <br>
+    <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
   </div>
   <div class="col-sm-8">
     <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
