@@ -1,43 +1,31 @@
 <section id="events">
-
-    
     <a href="/events/new"><%= octicon "plus", id: "logo" %></a>
-    <% if @event.empty? %>
+    <% if @events.empty? %>
         <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
     <% else %>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <%= render 'sortTab' %> 
-                        </li>
-                        <li class="nav-item">
-                            <%= render 'filter' %> 
-                        </li>
-                    </ul>
-                    <div class = "my-2 my-lg-0">
-                        <%= render 'search' %>
-                    </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <%= render 'sortTab' %> 
+                    </li>
+                    <li class="nav-item">
+                        <%= render 'filter' %> 
+                    </li>
+                </ul>
+                <div class = "my-2 my-lg-0">
+                    <%= render 'search' %>
                 </div>
-            </nav>
-            <div>
-            <% @event.each_slice(3) do |e| %>
-                <div class = "row">
-                    <% @event.each do |e| %>
-                        <div class="image col-sm-4">
-                            <%=image_tag(Picture.where(event_id: 1).first.picture.url, alt: "image", class: "gravatar")%>
-                            <div class="mask-middle">
-                                <%= button_to "/events/#{e[:id]}", method: :get, class:"btn btn-primary" do %>
-                                    View
-                                <% end %>  
-                            </div>
-                        </div>
-                    <% end %>
-                </div>
-            <% end %>
-            <br>
+            </div>
+        </nav>
+        <div id="events">
+            <div class = "row">
+                <%= render @events %>
+            </div>
+        <br>
         </div>
-    <% end %>                                               
+        <%= will_paginate @events %>
+    <% end %>                                            
 </section>
 
 

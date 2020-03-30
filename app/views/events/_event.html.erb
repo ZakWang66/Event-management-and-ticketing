@@ -1,0 +1,12 @@
+<div class="image col-sm-4">
+    <% if Picture.where(event_id: event[:id]).empty? %>
+        <%= image_pack_tag("bg.jpg", alt: "image", class: "gravatar") %>
+    <% else %>
+        <%= image_tag(Picture.where(event_id: 1).first.picture.url, alt: "image", class: "gravatar") %>
+    <% end %>
+    <div class="mask-middle">
+        <%= button_to "/events/#{event[:id]}", method: :get, class:"btn btn-primary" do %>
+            View
+        <% end %>  
+    </div>
+</div>
