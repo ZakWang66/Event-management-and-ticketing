@@ -21,6 +21,14 @@ class User < ApplicationRecord
     scope :with_audience, -> { with_roles(Participant.audience) }
     scope :with_visitors, -> { with_roles(Participant.visitor) }
 
+    scope :get_user_dict, -> (user_ids) {
+        dict = {}
+        find(user_ids).each do |user|
+            dict[user.id] = user
+        end
+        return dict
+    }
+
     def self.from_omniauth(auth)
         # Creates a new user only if it doesn't exist
         where(email: auth.info.email.downcase).first_or_initialize do |user|

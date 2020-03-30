@@ -1,73 +1,41 @@
-<div class="card" style="padding-bottom: 15px;">
-  <div class="card-body">
-    <div class="row">
-      <div style="width: 780px; height: 400px; padding-left: 30px; padding-top: 15px;">
-        <% if !@pictures.empty? %>
-          <%= render 'image_show' %>
-        <% else %>
-        <%=image_pack_tag("no_image.jpg", size: "750x422", style: "padding:0;margin:0")%>
-        <% end %>
-      </div>
-      <div style="padding-left: 50px; padding-top: 15px;">
-        <div class="row">
-          <% if @event.time > Time.now %>
-            <h6 class="p-2 rounded-pill bg-success text-light">
-              <%= octicon "flame" %> Active
-            </h6>
-          <% else %>
-            <h6 class="p-2 rounded-pill bg-secondary text-light">
-              <%= octicon "clock" %> End
-            </h6> 
-          <% end %>
-          <h4 class="card-title" style="padding-left: 10px; padding-top: 3px;">
-            <%=@event["title"] %>
-          </h4>
-          <% if !(Participant.where(event_id:@event[:id], role:1).empty?) && session[:current_user_id] == Participant.where(event_id:@event[:id], role:1).first.user_id %>
-            <div style="margin-left: auto; margin-right: 0;">
-              <%= button_to "/events/#{@event["id"]}/edit", method: :get, class:"btn btn-primary" do %>
-                Edit
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-        <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
-          Time: <%=@event.time%>
-        </h6>
-        <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
-          Place: <%=@event.place%>
-        </h6>
-        <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
-          Price: $<%=@event.price%>
-        </h6>
-        <div style="padding-top: 20px;">
-          <%=render 'gmap'%>
-          <div id="googleMap" style="width:420px;height:273px;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= octicon "plus" %>
 
-<div class="card" style="padding: 30px;">
-  <div class="row" style="padding-left: 15px; padding-right: 15px;">
-    <h4 class="card-title">
-      Description
-    </h4>
-    <% if @canBook %>
-      <div style="margin-left: auto; margin-right: 0;">
-        <% if @isBooked %>
-          <%= button_to cancel_event_path(event_id: @event["id"]), method: :post, class:"btn btn-secondary"  do %>
-            Cancel the book
-          <% end %>
-        <% else %>
-          <%= button_to book_event_path(event_id: @event["id"]), method: :post, class:"btn btn-primary"  do %>
-            Book this event
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% @pictures.each { |p| %>
+        <li data-target="#carouselExampleIndicators" data-slide-to=<%@count%> 
+            <% if @count == 0 %>
+                class="active"
+            <% end%>
+        ></li>
+        <% @count += 1 %>
+    <% } %>
+    <% @count = 0 %>
+  </ol>
+  <div class="carousel-inner">
+    <% @pictures.each { |p| %>
+        <div class="carousel-item 
+            <% if @count == 0 %>
+                active
+            <% end %>
+        ">
+            <%=image_tag(p.picture.url, alt: "image", class: "d-block w-100")%>
+            <% @count += 1 %>
+        </div>
+    <% } %>
   </div>
-  <h6 style="padding-top: 10px;">
-    <%=@event["description"] %>
-  </h6>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+<section id="forum">
+  <h2 class="title">Forum</h2>
+  <%= render_async get_forum_path(event_id: @event.id), 'data-turbolinks-track': 'reload' %>
+  <%= render partial: "posts/new_modal" %>
+</section>

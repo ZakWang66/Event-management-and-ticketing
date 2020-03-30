@@ -41,14 +41,18 @@ events.each do |event|
     sample_users.each do |user|
         post = Post.create(
             author: user,
-            event: event
+            event: event,
+            content: Faker::GreekPhilosophers.quote,
+            title: Faker::FunnyName.three_word_name
         )
     end
     sample_users.each do |user|
         Post.create(
             author: user,
             event: event,
-            parent: post
+            parent: post,
+            content: Faker::GreekPhilosophers.quote,
+            title: Faker::FunnyName.three_word_name
         )
     end
 end

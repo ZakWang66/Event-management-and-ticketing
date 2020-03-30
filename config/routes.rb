@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'events/cancel', to: 'events#cancel', as: 'cancel_event'
   post 'events/picture/upload/:id', to: 'events#add_img'
   post 'events/picture/delete/:id/:p_id', to: 'events#delete_img'
+  get 'get_forum', to: 'posts#getForum', as: 'get_forum'
   resources :users
   resources :events
   resources :posts

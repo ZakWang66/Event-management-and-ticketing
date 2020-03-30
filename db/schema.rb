@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 2020_03_27_212832) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "event_id", null: false
-    t.boolean "root"
     t.text "content"
     t.bigint "parent_id"
     t.bigint "user_id", null: false
+    t.text "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_posts_on_event_id"

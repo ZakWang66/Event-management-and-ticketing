@@ -7,6 +7,6 @@ class Post < ApplicationRecord
   has_many :replies, class_name: "Post", foreign_key: "parent_id"
 
   scope :with_roots, -> {
-    where.not(parent: nil)
+    where(parent: nil)
   }
 end
