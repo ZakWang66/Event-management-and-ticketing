@@ -112,14 +112,18 @@ class EventsController < ApplicationController
     end
 
     def book
-        if !is_expired_event(Event.find(params[:event_id])) && Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).empty?
+        role = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).first
+        if !is_expired_event(Event.find(params[:event_id])) && (role.nil? || role.role == "visitor")
             if Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :audience)
+                if !role.nil?
+                    role.destroy
+                end
                 flash[:success] = "Thank you. You have successfully booked this event!"
             else
                 flash[:danger] = "Some problem occoured while trying to book"
             end
         else
-            flash[:danger] = "You cannot book that event again"
+            flash[:danger] = "You cannot book that event"
         end
         redirect_to "/events/#{params[:event_id]}"
     end
