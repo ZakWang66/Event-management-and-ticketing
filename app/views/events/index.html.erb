@@ -1,31 +1,37 @@
-<section id="events">
-    <a href="/events/new"><%= octicon "plus", id: "logo" %></a>
+<div calss="card">
     <% if @events.empty? %>
         <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
     <% else %>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <%= render 'sortTab' %> 
-                    </li>
-                    <li class="nav-item">
-                        <%= render 'filter' %> 
-                    </li>
-                </ul>
-                <div class = "my-2 my-lg-0">
-                    <%= render 'search' %>
+        <div class="card-header">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container" style="max-width: 1000px;">
+                <%= button_to "/events/new", method: :get, class:"btn btn-secondary" do %>
+                    <%= octicon "plus", size: "80x80", style: "padding:0;margin:0" %>
+                <% end %>
+                <div class="collape navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <%= render 'sortTab' %> 
+                        </li>
+                        <li class="nav-item">
+                            <%= render 'filter' %> 
+                        </li>
+                    </ul>
                 </div>
+                <ul class="navbar-nav navbar-right">
+                    <%= render 'search' %>
+                </ul>
             </div>
-        </nav>
-        <div id="events">
-            <div class = "row">
-                <%= render @events %>
-            </div>
-        <br>
+            </nav>
         </div>
-        <%= will_paginate @events %>
-    <% end %>                                            
-</section>
+        <div class="card-body">
+            <div id="events">
+                <%= render 'event' %>
+            <br>
+            </div>
+        </div>
+        <%= will_paginate :partial => 'event' %>
+    <% end %> 
+</div>                                           
 
 

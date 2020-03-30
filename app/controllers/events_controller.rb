@@ -14,7 +14,7 @@ class EventsController < ApplicationController
                 @events = Event.filter_by_price(conditions)
             end
         end
-        @events = @events.paginate(page: params[:page], per_page: 12)
+        @events = @events.paginate(page: params[:page], per_page: 24)
     end
 
     
