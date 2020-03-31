@@ -1,10 +1,11 @@
 <% if current_user?(@user) %>
-  <div class="card" id="followees">
+  <div class="card" id="search">
+    <div class="card-header">
+      <div class="d-flex justify-content-center h-100">
+        <%= render partial: "searchbar" %>
+      </div>
+    </div>
     <div class="card-body">
-      <%= form_with(url: user_search_path, remote: true, method: :get, class: "form-inline") do |f| %>
-        <%= f.search_field :name, placeholder: "Please type the name", class: "form-control" %>
-        <%= f.submit "Search", class:"btn btn-outline-success" %>
-      <% end %>
       <ul class="list-group row" id="result"></ul>
     </div>
   </div>
@@ -20,7 +21,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center" id=<%= id %>>
           <%= link_to user.name, index_path(user_id: user.id) %>
           <% if current_user?(@user) %>
-            <%= button_to "unfollow", follows_path(user_id: current_user.id, followee_id: user.id, list_id: id), method: "delete", class:"btn btn-danger" %>
+            <%= render partial: "unfollow_link" %>
           <% end %>
         </li>
       <% end %>

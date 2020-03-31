@@ -2,7 +2,6 @@ class FollowsController < ApplicationController
   before_action :correct_user, only: [:create, :destroy]
 
   def create
-    byebug
     @user.follow(@followee)
     @user.save!
     redirect_to request.referer
@@ -23,8 +22,9 @@ class FollowsController < ApplicationController
 
   def userSearch
     @result = User
-    if !params[:name].nil?
-        @result = @result.where("lower(name) like ?", "%#{params[:name].downcase}%")
+    name = params[:user][:name]
+    if !name.nil?
+        @result = @result.where("lower(name) like ?", "%#{name.downcase}%")
     end
     @result = @result.paginate(page: params[:page], per_page:5)
   end

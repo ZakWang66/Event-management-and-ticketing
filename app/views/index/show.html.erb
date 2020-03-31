@@ -7,15 +7,21 @@
           <%= gravatar_for @user %>
           <%= @user.name %>
         </p>
-        <p class="card-text">
+        <div class="card-text d-flex align-items-center justify-content-end">
           <% if current_user?(@user) %>
-            <%= link_to  "Edit profile", profile_path %>
-          <% elsif current_user.following?(@user) %>
-            <%= button_to "unfollow", follows_path(user_id: current_user.id, followee_id: @user.id), method: "delete", class:"btn btn-danger" %>
+            <div calss="col-2">
+              <%= link_to  "Edit profile", profile_path %>
+            </div>
           <% else %>
-            <%= button_to "follow", follows_path(user_id: current_user.id, followee_id: @user.id), class:"btn btn-primary" %>
+            <div>
+              <% if current_user.following?(@user) %>
+                <%= render partial: "follows/unfollow_link" %>
+              <% else %>
+                <%= render partial: "follows/follow_link" %>
+              <% end %>
+            </div>
           <% end %>
-        </p>
+        </div>
       </div>
     </div>
     <br>
