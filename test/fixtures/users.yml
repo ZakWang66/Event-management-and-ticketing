@@ -3,11 +3,11 @@
 mike:
   name: Mike Chen
   email: mike@brandeis.edu
-  password: 12345
+  password_digest: 12345
   portrait: MyString
 
 daniel:
   name: Daniel Zhao
   email: daniel@brandeis.edu
-  password: 12345
+  password_digest: 12345
   portrait: MyString

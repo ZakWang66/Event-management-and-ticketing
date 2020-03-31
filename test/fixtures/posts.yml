@@ -2,14 +2,14 @@
 
 one:
   event: one
-  root: false
-  reply: one
+  # root: false
+  # reply: one
   content: MyText
   author: one
 
 two:
   event: two
-  root: false
-  reply: two
+  # root: false
+  # reply: two
   content: MyText
   author: two
