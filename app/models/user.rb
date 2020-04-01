@@ -13,6 +13,15 @@ class User < ApplicationRecord
 
     has_many :posts
 
+    has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'
+    has_many :followees, through: :followed_users
+
+    has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
+    has_many :followers, through: :following_users
+
+    paginates_per 5
+    max_paginates_per 5
+
     scope :with_roles, -> (roles) {
         joins(:participants).merge(roles)
     }
@@ -37,5 +46,20 @@ class User < ApplicationRecord
           user.password = "default_password"
           user.remote_portrait_url = auth.info.image
         end
+    end
+
+      # Follows a user.
+    def follow(other_user)
+        followees << other_user
+    end
+
+    # Unfollows a user.
+    def unfollow(other_user)
+        followees.delete(other_user)
+    end
+
+    # Returns true if the current user is following the other user.
+    def following?(other_user)
+        followees.include?(other_user)
     end
 end

@@ -1,12 +1,12 @@
 <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Filt
+        Filter
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-        <li><%= link_to "0-100", events_path(filt_by: "0-100") %></li>
-        <li><%= link_to "100-500", events_path(filt_by: "100-500") %></li>
-        <li><%= link_to "500-1000", events_path(filt_by: "500-1000") %></li>
-        <li><%= link_to "more than 1000", events_path(filt_by: "more than 1000") %></li>
+        <li><%= link_to "0-100", events_path(filt_by: "0-100", sort_by: params[:sort_by]) %></li>
+        <li><%= link_to "100-500", events_path(filt_by: "100-500", sort_by: params[:sort_by]) %></li>
+        <li><%= link_to "500-1000", events_path(filt_by: "500-1000", sort_by: params[:sort_by]) %></li>
+        <li><%= link_to "more than 1000", events_path(filt_by: "more than 1000", sort_by: params[:sort_by]) %></li>
     </ul>
 </div>

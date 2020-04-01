@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'get_follows', to: 'follows#getFollows'
+  get 'user_search', to: 'follows#userSearch'
   root 'index#home'
   get 'sign_out', to: 'session#destroy'
   get 'auth/:provider/callback', to: 'session#googleAuth'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   resources :users
   resources :events
   resources :posts
+  post 'follows', to: 'follows#create'
+  delete 'follows', to: 'follows#destroy'
   get ':user_id', to: 'index#show', as: 'index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,8 @@
 <div class="card events" id="future_events">
+    <div class="card-header">
+        <h3 calss="card-title">Future Event</h3>
+    </div>
     <div class="card-body">
-        <h3 class="card-title">Future Event</h3>
         <div id="future_events">
             <%= load_events(@future_participants) %>
         </div>
@@ -8,8 +10,10 @@
 </div>
 <br>
 <div class="card events">
+    <div class="card-header">
+        <h3 calss="card-title">Past Event</h3>
+    </div>
     <div class="card-body" id="past_events">
-        <h3 class="card-title">Past Event</h3>
         <div id="past_events">
             <%= load_events(@past_participants) %>
         </div>

@@ -1,0 +1,6 @@
+<div class="searchbar btn-outline-success">
+  <%= form_for( :user, url: user_search_path, method: "get", remote: true) do |f| %>
+    <%= f.text_field :name, placeholder: "Search the name", class: "search_input flex-grow-1" %>
+    <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
+  <% end %>
+</div>

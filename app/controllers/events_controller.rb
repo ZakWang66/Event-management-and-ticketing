@@ -3,15 +3,19 @@ class EventsController < ApplicationController
     def index
         @events = Event.all
         if params[:title]
-            @events = Event.where("title LIKE ?", "%#{params[:title]}%")
-        elsif params[:sort_by]
-            @events = Event.order_list(params[:sort_by])
-        elsif params[:filt_by]
+            @events = @events.where("title LIKE ?", "%#{params[:title]}%")
+        end
+
+        if params[:sort_by]
+            @events = @events.order_list(params[:sort_by])
+        end
+
+        if params[:filt_by]
             if params[:filt_by] == "more than 1000"
-                @events = Event.where("price > ?", 1000)
+                @events = @events.where("price > ?", 1000)
             else
                 conditions = params[:filt_by].split("-")
-                @events = Event.filter_by_price(conditions)
+                @events = @events.filter_by_price(conditions)
             end
         end
         @events = @events.paginate(page: params[:page], per_page: 24)
@@ -112,14 +116,18 @@ class EventsController < ApplicationController
     end
 
     def book
-        if !is_expired_event(Event.find(params[:event_id])) && Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).empty?
+        role = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id]).first
+        if !is_expired_event(Event.find(params[:event_id])) && (role.nil? || role.role == "visitor")
             if Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :audience)
+                if !role.nil?
+                    role.destroy
+                end
                 flash[:success] = "Thank you. You have successfully booked this event!"
             else
                 flash[:danger] = "Some problem occoured while trying to book"
             end
         else
-            flash[:danger] = "You cannot book that event again"
+            flash[:danger] = "You cannot book that event"
         end
         redirect_to "/events/#{params[:event_id]}"
     end

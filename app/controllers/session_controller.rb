@@ -13,7 +13,7 @@ class SessionController < ApplicationController
     user.google_refresh_token = refresh_token if refresh_token.present?
     user.save
     log_in(user)
-    redirect_to root_path
+    redirect_to index_path(user.id)
   end
 
   def destroy

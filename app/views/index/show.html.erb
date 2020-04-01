@@ -1,17 +1,33 @@
 <div class="row">
   <div class="col-sm-4">
     <div class="card">
-      <div class="card-body">
+      <div class="card-header">
         <h3 class="card-title">Basic Profile</h3>
+      </div>
+      <div class="card-body">
         <p class="card-text">
           <%= gravatar_for @user %>
           <%= @user.name %>
         </p>
-        <p class="card-text">
-          <%= has_edit_permission(session[:current_user_id], @user.id)%>
-        </p>
+        <div class="card-text d-flex align-items-center justify-content-end">
+          <% if current_user?(@user) %>
+            <div calss="col-2">
+              <%= link_to  "Edit profile", profile_path %>
+            </div>
+          <% else %>
+            <div>
+              <% if current_user.following?(@user) %>
+                <%= render partial: "follows/unfollow_link", locals: {followee_id: @user.id} %>
+              <% else %>
+                <%= render partial: "follows/follow_link", locals: {followee_id: @user.id} %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
+    <br>
+    <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
   </div>
   <div class="col-sm-8">
     <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
