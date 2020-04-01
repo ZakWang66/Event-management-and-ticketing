@@ -1,11 +1,12 @@
 <% if current_user?(@user) %>
   <div class="card" id="search">
     <div class="card-header">
+      <h3 calss="card-title">Search User</h3>
+    </div>
+    <div class="card-body">
       <div class="d-flex justify-content-center h-100">
         <%= render partial: "searchbar" %>
       </div>
-    </div>
-    <div class="card-body">
       <ul class="list-group row" id="result"></ul>
     </div>
   </div>
@@ -13,15 +14,17 @@
 <% end %>
 
 <div class="card" id="followees">
-  <div class="card-body">
+  <div class="card-header">
     <h3 calss="card-title">Following</h3>
+  </div>
+  <div class="card-body">
     <ul class="list-group row">
       <% @followees.each_with_index do |user, i| %>
         <% id = "followee-" + i.to_s %>
         <li class="list-group-item d-flex justify-content-between align-items-center" id=<%= id %>>
           <%= link_to user.name, index_path(user_id: user.id) %>
           <% if current_user?(@user) %>
-            <%= render partial: "unfollow_link" %>
+            <%= render partial: "unfollow_link", locals: {followee_id: user.id} %>
           <% end %>
         </li>
       <% end %>
@@ -30,8 +33,10 @@
 </div>
 <br>
 <div class="card" id="followers">
-  <div class="card-body">
+  <div class="card-header">
     <h3 calss="card-title">Followers</h3>
+  </div>
+  <div class="card-body">
     <ul class="list-group row">
       <% @followers.each_with_index do |user, i| %>
         <% id = "follower-" + i.to_s %>

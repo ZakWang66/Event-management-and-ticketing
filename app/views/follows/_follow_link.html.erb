@@ -1,4 +1,4 @@
-<%= link_to follows_path(user_id: current_user.id, followee_id: @user.id), method: "post", class:"btn btn-outline-primary hover-btn d-flex align-items-center" do %>
+<%= link_to follows_path(user_id: current_user.id, followee_id: followee_id), method: "post", class:"btn btn-outline-primary hover-btn d-flex align-items-center" do %>
   <span class="hover-text">Follow</span>
   <i class="far fa-lg fa-heart text-danger hover-icon"></i>
   <i class="fas fa-lg fa-heart text-danger hover-icon-lock"></i>

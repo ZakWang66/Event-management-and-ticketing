@@ -1,4 +1,4 @@
-<%= link_to follows_path(user_id: current_user.id, followee_id: @user.id), method: "delete", class:"btn btn-outline-danger hover-btn d-flex align-items-center" do %>
+<%= link_to follows_path(user_id: current_user.id, followee_id: followee_id), method: "delete", class:"btn btn-outline-danger hover-btn d-flex align-items-center" do %>
   <span class="hover-text">Unfollow</span>
   <i class="fas fa-lg fa-heart text-danger hover-icon"></i>
   <i class="fas fa-lg fa-user-slash hover-icon-lock"></i>

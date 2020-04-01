@@ -1,11 +1,13 @@
+<br>
 <% @result.each do |user| %>
-	<% @user = user %>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<%= link_to user.name, index_path(user_id: @user.id) %>
-		<% if current_user.following?(@user) %>
-			<%= render partial: "unfollow_link" %>
+		<%= link_to user.name, index_path(user_id: user.id) %>
+		<% if current_user?(user) %>
+			<div class="p-2 bg-success text-white">Current User</div>
+		<% elsif current_user.following?(user) %>
+			<%= render partial: "unfollow_link", locals: {followee_id: user.id} %>
 		<% else %>
-			<%= render partial: "follow_link" %>
+			<%= render partial: "follow_link", locals: {followee_id: user.id} %>
 		<% end %>
 	</li>
 <% end %>
