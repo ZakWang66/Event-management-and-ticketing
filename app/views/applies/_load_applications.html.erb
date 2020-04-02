@@ -1,0 +1,5 @@
+<%= render_async get_applications_path(user_id: @user.id), 'data-turbolinks-track': 'reload' do %>
+  <%= load_jpg %>
+<% end %>
+
+<%= content_for :render_async %>

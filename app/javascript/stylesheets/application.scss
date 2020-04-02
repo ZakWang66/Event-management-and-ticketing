@@ -68,7 +68,7 @@ section {
     }
 }
 
-.events {
+.events-list {
     max-height: 800px;
     overflow-y: auto;
 }
@@ -231,7 +231,6 @@ section {
 }
 
 .hover-btn:hover > .hover-text {
-    padding: 0 10px;
     max-width: 10em;
     transition: max-width 0.4s linear;
 }

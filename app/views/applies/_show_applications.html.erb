@@ -1,31 +1,26 @@
-<% if current_user?(@user) %>
-  <div class="card" id="applications">
-    <div class="card-header">
-      <h3 calss="card-title">Applications</h3>
-    </div>
-    <div class="card-body">
-        <table class="table table-striped table-fixed">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">Applicants</th>
-                    <th scope="col" class="text-center">Event</th>
-                    <th scope="col" class="text-center">Apply Time</th>
-                    <th scope="col" class="text-center">Approve</th>
-                    <th scope="col" class="text-center">Disapprove</th>
-                </tr>
-            </thead>
+<% if @applications.empty? %>
+    <%= empty_placeholder "No applications so far" %>
+<% else %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Applicants</th>
+                <th scope="col" class="text-center">Event</th>
+                <th scope="col" class="text-center">Apply Time</th>
+                <th scope="col" class="text-center">Operations</th>
+            </tr>
+        </thead>
 
-            <% @applications.each do |application| %>
-                <tr>
-                    <td><%= application.applicant.name %></td>
-                    <td><%= application.event.title %></td>
-                    <td class="text-center"><%= application.created_at %></td>
-                    <td style="display:flex, width: 20%" class="justify-content-center"><%= link_to_approve application.id, @user.id %></td>
-                    <td style="display:flex" class="justify-content-center"><%= link_to_disapprove application.id, @user.id %></td> 
-                </tr>
-            <% end %>
-        </table>
-    </div>
-  </div>
-  <br>
+        <% @applications.each do |application| %>
+            <tr id=<%= "application-" + application.id.to_s %>>
+                <td class="align-middle"><%= link_to_user application.applicant %></td>
+                <td class="align-middle"><%= link_to application.event.title, event_path(application.event.id) %></td>
+                <td class="text-center align-middle"><%= application.created_at %></td>
+                <td class="px-0 d-flex flex-wrap justify-content-center">
+                <div class="d-flex justify-content-center" style="width: 105px"><%= link_to_approve_remote application.id, @user.id %></div>
+                <div class="d-flex justify-content-center" style="width: 105px"><%= link_to_disapprove_remote application.id, @user.id %></div>
+                </td> 
+            </tr>
+        <% end %>
+    </table>
 <% end %>
