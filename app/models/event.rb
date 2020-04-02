@@ -7,6 +7,9 @@ class Event < ApplicationRecord
 
     has_many :posts
 
+    has_many :applications
+    has_many :applicants, through: :applications, class_name: "User"
+
     scope :with_roles, -> (roles) {
         joins(:participants).merge(roles)
     }
@@ -25,5 +28,9 @@ class Event < ApplicationRecord
         else
             order(created_at: :asc)
         end
+    end
+
+    def add_user(applicant)
+        Participant.create(user: applicant, event_id: id, role: :audience)
     end
 end

@@ -70,7 +70,7 @@ section {
 
 .events {
     max-height: 800px;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .gravatar {
@@ -242,4 +242,9 @@ section {
 
 .hover-btn:hover .hover-icon, .hover-icon-lock {
     display: none;
+}
+
+.fixed-table {
+    table-layout: fixed;
+    width: 100%;
 }

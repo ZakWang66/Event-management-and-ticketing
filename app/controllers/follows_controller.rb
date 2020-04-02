@@ -1,16 +1,18 @@
 class FollowsController < ApplicationController
-  before_action :correct_user, only: [:create, :destroy]
+  before_action :correct_user?, only: [:create, :destroy]
+  before_action :followee_exist?, only: [:create, :destroy]
 
   def create
+    byebug
     @user.follow(@followee)
     @user.save!
-    redirect_to request.referer
+    redirect_to request.referer || root_path
   end
 
   def destroy
     @user.unfollow(@followee)
     @user.save!
-    redirect_to request.referer
+    redirect_to request.referer || root_path
   end
 
   def getFollows
@@ -29,12 +31,11 @@ class FollowsController < ApplicationController
     @result = @result.paginate(page: params[:page], per_page:5)
   end
 
-  def correct_user
-    if current_user.id == params[:user_id].to_i
-      @user =  current_user
-      @followee = User.find(params[:followee_id])
-    else
-      redirect_to index_path(current_user.id)
+  def followee_exist?
+    @followee = User.find(params[:followee_id])
+    if @followee.nil?
+      flash[:danger] = "Didn't find the followee."
+      redirect_to request.referer || root_path
     end
   end
 end

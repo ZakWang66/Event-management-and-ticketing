@@ -24,6 +24,9 @@ module ApiHelper
         return tag.html_safe
     end
 
+    def load_event(event)
+    end
+
     private
     def get_bg_color(role)
         case Participant.roles[role]

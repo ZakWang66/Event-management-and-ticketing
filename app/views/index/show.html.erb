@@ -17,9 +17,9 @@
           <% else %>
             <div>
               <% if current_user.following?(@user) %>
-                <%= render partial: "follows/unfollow_link", locals: {followee_id: @user.id} %>
+                <%= link_to_unfollow current_user.id, @user.id %>
               <% else %>
-                <%= render partial: "follows/follow_link", locals: {followee_id: @user.id} %>
+                <%= link_to_follow current_user.id, @user.id %>
               <% end %>
             </div>
           <% end %>
@@ -30,6 +30,9 @@
     <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
   </div>
   <div class="col-sm-8">
+    <% if current_user?(@user) %>
+      <%= render_async get_applications_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
+    <% end %>
     <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
   </div>
 </div>

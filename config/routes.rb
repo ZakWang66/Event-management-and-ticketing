@@ -19,8 +19,12 @@ Rails.application.routes.draw do
   resources :users
   resources :events
   resources :posts
+  resources :applies, path: :applications, only: [:create, :destroy]
   post 'follows', to: 'follows#create'
   delete 'follows', to: 'follows#destroy'
+  post 'applications/:id/approve', to: 'applies#approve', as: 'application_approve'
+  post 'applications/:id/disapprove', to: 'applies#disapprove', as: 'application_disapprove'
+  get 'get_applications', to: 'applies#getApplications', as: 'get_applications'
   get ':user_id', to: 'index#show', as: 'index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
