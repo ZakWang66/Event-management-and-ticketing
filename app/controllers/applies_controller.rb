@@ -10,7 +10,7 @@ class AppliesController < ApplicationController
     end
 
     def destroy
-        @user.delete_application
+        @user.delete_application(@application)
         render_result "delete_application_record"
     end
 
@@ -42,10 +42,13 @@ class AppliesController < ApplicationController
     end
 
     def application_exist?
-        @application = Application.find(params[:id])
-        if @application.nil?
+        @application = Application.where(id:params[:id])
+        if @application.empty?
+            @application = nil
             flash[:danger] = "Didn't find the application. This may due to wrong api usage or this application has been operated by others"
             redirect_to request.referer || root_path
+        else
+            @application = @application.first
         end
     end
 

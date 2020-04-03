@@ -11,15 +11,17 @@ Rails.application.routes.draw do
   patch 'users/:id/update_pwd', to: 'users#updatePassword', as: 'update_pwd'
   get 'profile', to: 'profile#show'
   get 'api/get_events', to: 'api#getEvents', as: 'get_events'
-  post 'events/book', to: 'events#book', as: 'book_event'
-  post 'events/cancel', to: 'events#cancel', as: 'cancel_event'
+  post 'events/like', to: 'events#like', as: 'like_event'
+  post 'events/dislike', to: 'events#dislike', as: 'dislike_event'
+  # post 'events/book', to: 'events#book', as: 'book_event'
+  # post 'events/cancel', to: 'events#cancel', as: 'cancel_event'
   post 'events/picture/upload/:id', to: 'events#add_img'
   post 'events/picture/delete/:id/:p_id', to: 'events#delete_img'
   get 'get_forum', to: 'posts#getForum', as: 'get_forum'
   resources :users
   resources :events
   resources :posts
-  resources :applies, path: :applications, only: [:create, :destroy]
+  resources :applies, path: :applications, only: [:create, :destroy], as: "edit_apply"
   post 'follows', to: 'follows#create'
   delete 'follows', to: 'follows#destroy'
   post 'applications/:id/approve', to: 'applies#approve', as: 'application_approve'
