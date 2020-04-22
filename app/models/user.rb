@@ -19,6 +19,9 @@ class User < ApplicationRecord
     has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
     has_many :followers, through: :following_users
 
+    has_many :applications
+    has_many :applied_events, through: :applications, source: :event, class_name: "Event"
+
     paginates_per 5
     max_paginates_per 5
 
@@ -61,5 +64,26 @@ class User < ApplicationRecord
     # Returns true if the current user is following the other user.
     def following?(other_user)
         followees.include?(other_user)
+    end
+
+    # Apply for an event.
+    def apply(event)
+        applied_events << event
+    end
+
+    # Approve an application
+    def approve(application)
+        application.event.add_user(application.applicant)
+        delete_application(application)
+    end
+
+    # Disapprove an application
+    def disapprove(application)
+        delete_application(application)
+    end
+
+    # Delete an application
+    def delete_application(application)
+        application.destroy
     end
 end

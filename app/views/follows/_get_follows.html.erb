@@ -1,42 +1,36 @@
 <% if current_user?(@user) %>
-  <div class="card" id="search">
-    <div class="card-header">
-      <h3 calss="card-title">Search User</h3>
-    </div>
-    <div class="card-body">
-      <div class="d-flex justify-content-center h-100">
-        <%= render partial: "searchbar" %>
-      </div>
-      <ul class="list-group row" id="result"></ul>
-    </div>
-  </div>
+  <section id="search">
+    <h3>Search User</h3>
+    <%= search_user %>
+    <ul class="list-group row" id="result"></ul>
+  </section>
   <br>
 <% end %>
 
-<div class="card" id="followees">
-  <div class="card-header">
-    <h3 calss="card-title">Following</h3>
-  </div>
-  <div class="card-body">
+<section id="followees">
+  <h3>Following</h3>
+  <% if @followees.empty? %>
+    <%= empty_placeholder "No following so far" %>
+  <% else %>
     <ul class="list-group row">
       <% @followees.each_with_index do |user, i| %>
         <% id = "followee-" + i.to_s %>
         <li class="list-group-item d-flex justify-content-between align-items-center" id=<%= id %>>
           <%= link_to user.name, index_path(user_id: user.id) %>
           <% if current_user?(@user) %>
-            <%= render partial: "unfollow_link", locals: {followee_id: user.id} %>
+            <%= link_to_unfollow @user.id, user.id %>
           <% end %>
         </li>
       <% end %>
     </ul>
-  </div>
-</div>
+  <% end %>
+</section>
 <br>
-<div class="card" id="followers">
-  <div class="card-header">
-    <h3 calss="card-title">Followers</h3>
-  </div>
-  <div class="card-body">
+<section id="followers">
+  <h3>Followers</h3>
+  <% if @followers.empty? %>
+    <%= empty_placeholder "No followers so far" %>
+  <% else %>
     <ul class="list-group row">
       <% @followers.each_with_index do |user, i| %>
         <% id = "follower-" + i.to_s %>
@@ -45,5 +39,5 @@
         </li>
       <% end %>
     </ul>
-  </div>
-</div>
+  <% end %>
+</section>

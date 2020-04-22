@@ -11,15 +11,15 @@
         </p>
         <div class="card-text d-flex align-items-center justify-content-end">
           <% if current_user?(@user) %>
-            <div calss="col-2">
+            <div>
               <%= link_to  "Edit profile", profile_path %>
             </div>
           <% else %>
             <div>
               <% if current_user.following?(@user) %>
-                <%= render partial: "follows/unfollow_link", locals: {followee_id: @user.id} %>
+                <%= link_to_unfollow current_user.id, @user.id %>
               <% else %>
-                <%= render partial: "follows/follow_link", locals: {followee_id: @user.id} %>
+                <%= link_to_follow current_user.id, @user.id %>
               <% end %>
             </div>
           <% end %>
@@ -27,9 +27,37 @@
       </div>
     </div>
     <br>
-    <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
+    <div class="card" id="follows">
+      <div class="card-header">
+        <h3 class="card-title">Follows</h3>
+      </div>
+      <div class="card-body">
+        <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' do %>
+          <%= load_jpg %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="col-sm-8">
-    <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' %>
+    <% if current_user?(@user) %>
+      <div class="card" id="applications">
+        <div class="card-header">
+          <h3 class="card-title">Applications</h3>
+        </div>
+        <div class="card-body">
+          <%= render partial: "applies/load_applications" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="card" id="events">
+      <div class="card-header">
+        <h3 class="card-title">Events</h3>
+      </div>
+      <div class="card-body">
+        <%= render_async get_events_path(user_id: @user.id), 'data-turbolinks-track': 'reload' do %>
+          <%= load_jpg %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

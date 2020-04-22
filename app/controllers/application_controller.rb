@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
     def authorized
         redirect_to root_path unless logged_in?
     end
+
+    def correct_user?
+        if current_user.id == params[:user_id].to_i
+          @user =  current_user
+        else
+          redirect_to request.referer || root_path
+        end
+    end
 end

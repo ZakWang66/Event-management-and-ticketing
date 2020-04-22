@@ -1,0 +1,26 @@
+<% if @applications.empty? %>
+    <%= empty_placeholder "No applications so far" %>
+<% else %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Applicants</th>
+                <th scope="col" class="text-center">Event</th>
+                <th scope="col" class="text-center">Apply Time</th>
+                <th scope="col" class="text-center">Operations</th>
+            </tr>
+        </thead>
+
+        <% @applications.each do |application| %>
+            <tr id=<%= "application-" + application.id.to_s %>>
+                <td class="align-middle"><%= link_to_user application.applicant %></td>
+                <td class="align-middle"><%= link_to application.event.title, event_path(application.event.id) %></td>
+                <td class="text-center align-middle"><%= application.created_at %></td>
+                <td class="px-0 d-flex flex-wrap justify-content-center">
+                <div class="d-flex justify-content-center" style="width: 105px"><%= link_to_approve_remote application.id, @user.id %></div>
+                <div class="d-flex justify-content-center" style="width: 105px"><%= link_to_disapprove_remote application.id, @user.id %></div>
+                </td> 
+            </tr>
+        <% end %>
+    </table>
+<% end %>

@@ -8,4 +8,8 @@ module UsersHelper
         end
         image_tag(gravatar_url, alt: user.name, class: "gravatar")
     end
+
+    def link_to_user(user)
+        link_to user.name, index_path(user_id: user.id)
+    end
 end

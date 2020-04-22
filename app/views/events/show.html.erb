@@ -22,13 +22,16 @@
           <h4 class="card-title" style="padding-left: 10px; padding-top: 3px;">
             <%=@event["title"] %>
           </h4>
-          <% if !(Participant.where(event_id:@event[:id], role:1).empty?) && session[:current_user_id] == Participant.where(event_id:@event[:id], role:1).first.user_id %>
-            <div style="margin-left: auto; margin-right: 0;">
+          
+          <div style="margin-left: auto; margin-right: 0;">
+            <% if !(Participant.where(event_id:@event[:id], role:1).empty?) && session[:current_user_id] == Participant.where(event_id:@event[:id], role:1).first.user_id %>
               <%= button_to "/events/#{@event["id"]}/edit", method: :get, class:"btn btn-primary" do %>
                 Edit
               <% end %>
-            </div>
-          <% end %>
+            <% else %>
+              <%= octicon "star", height:32, class:"octicon octicon-x close" %>
+            <% end %>
+          </div>
         </div>
         <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
           Time: <%=@event.time%>
@@ -53,15 +56,17 @@
     <h4 class="card-title">
       Description
     </h4>
-    <% if @canBook %>
+    <% if @canApply %>
       <div style="margin-left: auto; margin-right: 0;">
         <% if @isBooked %>
-          <%= button_to cancel_event_path(event_id: @event["id"]), method: :post, class:"btn btn-secondary"  do %>
-            Cancel the book
+          <button class="btn btn-success disabled" style="cursor: default;">You have booked this event</button>
+        <% elsif !@apply.nil? %>
+          <%= button_to edit_apply_path(id:@apply["id"], event_id:@event["id"], user_id:session[:current_user_id]), method: :delete, class:"btn btn-danger"  do %>
+            Cancel my application
           <% end %>
         <% else %>
-          <%= button_to book_event_path(event_id: @event["id"]), method: :post, class:"btn btn-primary"  do %>
-            Book this event
+          <%= button_to edit_apply_index_path(event_id:@event["id"], user_id:session[:current_user_id]), method: :post, class:"btn btn-primary"  do %>
+            Apply this event
           <% end %>
         <% end %>
       </div>
