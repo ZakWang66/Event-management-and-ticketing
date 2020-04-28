@@ -3,7 +3,6 @@ class FollowsController < ApplicationController
   before_action :followee_exist?, only: [:create, :destroy]
 
   def create
-    byebug
     @user.follow(@followee)
     @user.save!
     redirect_to request.referer || root_path
