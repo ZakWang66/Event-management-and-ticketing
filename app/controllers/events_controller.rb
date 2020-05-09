@@ -31,10 +31,11 @@ class EventsController < ApplicationController
     end
 
     def create
+        puts params.inspect
         e = Event.new(
             title:params[:title],
             price:params[:price],
-            time: params[:time],
+            time: params[:event][:time],
             place:params[:place],
             description:params[:description],
             created_at:Time.now.to_s
@@ -54,6 +55,11 @@ class EventsController < ApplicationController
         @method = "patch"
         @title = "Edit Event"
         @event = Event.find(params[:id])
+    end
+
+    def uploadImg
+        @title = "Images"
+        @event = Event.find(params[:id])
         @pictures = Picture.where(event_id:params[:id])
     end
 
@@ -66,7 +72,7 @@ class EventsController < ApplicationController
             e.update(
                 title:params[:title],
                 price:params[:price],
-                time: params[:time],
+                time: params[:event][:time],
                 place:params[:place],
                 description:params[:description],
                 created_at:Time.now.to_s
@@ -85,6 +91,31 @@ class EventsController < ApplicationController
         @apply = @event.applications.where(user_id:session[:current_user_id])
         @apply = @apply.empty? ? nil : @apply.first
         @isBooked = !participant_relation.empty? && participant_relation.first.role == "audience"
+        @liked = !participant_relation.empty? && (participant_relation.first.role == "visitor" || participant_relation.last.role == "visitor")
+    end
+
+    def like
+        participant_relation = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id])
+        if !participant_relation.empty?
+            flash[:danger] = "You have already booked this event"
+        else
+            Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :visitor)
+            flash[:success] = "success!"
+        end
+        redirect_to "/events/#{params[:id]}"
+    end
+
+    def dislike
+        participant_relation = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id], role: :visitor)
+        if participant_relation.empty?
+            flash[:danger] = "You have not yet like this event"
+        else
+            participant_relation.each { |p|
+                p.destroy
+            }
+            flash[:success] = "success!"
+        end
+        redirect_to "/events/#{params[:event_id]}"
     end
 
     def add_img

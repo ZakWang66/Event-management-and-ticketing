@@ -4,20 +4,41 @@
   </script>
 
   <script>
-  function initialize() {
-    var loc = {lat: -23.7339834, lng: 133.8694412};
-    var mapProp = {
-      center:loc,
-      zoom:16,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-      };
-    var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    bounds  = new google.maps.LatLngBounds();
-    var marker = new google.maps.Marker({position: loc, map: map});
-    bounds.extend(loc);
-    map.panToBounds(bounds);
-  }
+    var geocoder;
+    var map;
 
-  google.maps.event.addDomListener(window, 'load', initialize);
+    function codeAddress() {
+      var address = document.getElementById('place').value;
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } 
+        // else {
+        //   alert('Geocode was not successful for the following reason: ' + status);
+        // }
+      });
+    }
+
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var loc = {lat: -23.7339834, lng: 133.8694412};
+      var mapProp = {
+        center:loc,
+        zoom:16,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+      map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+      // bounds  = new google.maps.LatLngBounds();
+      // var marker = new google.maps.Marker({position: loc, map: map});
+      // bounds.extend(loc);
+      // map.panToBounds(bounds);
+      codeAddress();
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 </head>
