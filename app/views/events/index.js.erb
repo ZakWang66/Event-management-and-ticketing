@@ -1,4 +1,4 @@
-$('#events').append('<%= j render(@events) %>');
+$('.gallery').append('<%= j render(@events) %>');
 <% if @events.next_page %>
     $('.pagination').replaceWith('<%= j will_paginate(@events) %>');
 <% else %>

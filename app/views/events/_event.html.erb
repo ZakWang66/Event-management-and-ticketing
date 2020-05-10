@@ -1,28 +1,18 @@
-<% @events.each_slice(3) do |events| %>    
-    <div class="row">
-        <% events.each do |event| %>
-            <div class="col-sm-4">
-                <div class="card" style="width:200px; height:480px;">
-                    <div class="image">
-                        <% if Picture.where(event_id: event[:id]).empty? %>
-                            <%= image_pack_tag("poster#{event[:id] % 3 + 1}.jpg", class: "card-img-top", alt: "Card image", style: "width:100%; height:300px;") %>
-                        <% else %>
-                            <%= image_tag(Picture.where(event_id: event[:id]).first.picture.url, class: "card-img-top", alt: "Card image", style: "width:100%; height:300px;") %>
-                        <% end %>
-                        <div class="mask-middle">
-                        <%= button_to "/events/#{event[:id]}", method: :get, class:"btn btn-primary" do %>
-                            View
-                        <% end %>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title"><%= event[:title] %></h4>
-                        <p class="card-text"><%= event[:time] %></p>
-                        <p class="card-text"><%= event[:price] %></p>
-                    </div>
-                </div>
-            </div>
+<% @events.each do |event| %>    
+    <div class="images">
+        <% if Picture.where(event_id: event[:id]).empty? %>
+            <%= image_pack_tag("poster#{event[:id] % 30 + 1}.jpg") %>
+        <% else %>
+            <%= image_tag(Picture.where(event_id: event[:id]).first.picture.url) %>
         <% end %>
+        <div class="event-info">
+            <h4><%= event[:title] %></h4>
+            <p><%= event[:time] %></p>
+            <p><%= event[:price] %></p>
+            <%= button_to "/events/#{event[:id]}", method: :get do %>
+                View
+            <% end %>
+        </div>
     </div>
 <% end %>
 

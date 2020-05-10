@@ -1,37 +1,35 @@
-<div calss="card">
-    <% if @events.empty? %>
-        <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
-    <% else %>
-        <div class="card-header">
-            <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="container" style="max-width: 1000px;">
-                <%= button_to "/events/new", method: :get, class:"btn btn-secondary" do %>
-                    <%= octicon "plus", size: "80x80", style: "padding:0;margin:0" %>
-                <% end %>
-                <div class="collape navbar-collapse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <%= render 'sortTab' %> 
-                        </li>
-                        <li class="nav-item">
-                            <%= render 'filter' %> 
-                        </li>
-                    </ul>
-                </div>
-                <ul class="navbar-nav navbar-right">
-                    <%= render 'search' %>
+<header role="banner">
+    <%= image_pack_tag("gallery.png", id: "logo-main", width: "200", alt: "Logo Thing main logo") %>
+    <p>Begin your next journey!</p>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container" style="max-width: 1000px;">
+            <%= button_to "/events/new", method: :get, class:"btn btn-secondary" do %>
+                <%= octicon "plus", size: "80x80", style: "padding:0;margin:0" %>
+            <% end %>
+            <div class="collape navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <%= render 'sortTab' %> 
+                    </li>
+                    <li class="nav-item">
+                        <%= render 'filter' %> 
+                    </li>
                 </ul>
             </div>
-            </nav>
+            <ul class="navbar-nav navbar-right">
+                <%= render 'search' %>
+            </ul>
         </div>
-        <div class="card-body">
-            <div id="events">
-                <%= render 'event' %>
-            <br>
-            </div>
-        </div>
-        <%= will_paginate :partial => 'event' %>
-    <% end %> 
-</div>                                           
+    </nav>
+</header>
+<% if @events.empty? %>
+    <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
+<% else %>
+    <div class="gallery">
+        <%= render 'event' %>
+        <br>
+    </div>
+    <%= will_paginate :partial => 'event' %>
+<% end %>                                         
 
 
