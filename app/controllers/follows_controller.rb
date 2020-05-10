@@ -5,13 +5,23 @@ class FollowsController < ApplicationController
   def create
     @user.follow(@followee)
     @user.save!
-    redirect_to request.referer || root_path
+    if params[:type] == "flip"
+      render_result "change_to_unfollow"
+    elsif params[:type] == "reload"
+      render_result "reload_follows"
+    end
   end
 
   def destroy
     @user.unfollow(@followee)
     @user.save!
-    redirect_to request.referer || root_path
+    if params[:type] == "flip"
+      render_result "change_to_follow"
+    elsif params[:type] == "delete"
+      render_result "delete_follows"
+    elsif params[:type] == "reload"
+      render_result "reload_follows"
+    end
   end
 
   def getFollows
