@@ -15,11 +15,11 @@
               <%= link_to  "Edit profile", profile_path %>
             </div>
           <% else %>
-            <div>
+            <div class="follow-link">
               <% if current_user.following?(@user) %>
-                <%= link_to_unfollow current_user.id, @user.id %>
+                <%= link_to_unfollow current_user.id, @user.id, "flip" %>
               <% else %>
-                <%= link_to_follow current_user.id, @user.id %>
+                <%= link_to_follow current_user.id, @user.id, "flip" %>
               <% end %>
             </div>
           <% end %>
@@ -32,9 +32,7 @@
         <h3 class="card-title">Follows</h3>
       </div>
       <div class="card-body">
-        <%= render_async get_follows_path(user_id: @user.id), 'data-turbolinks-track': 'reload' do %>
-          <%= load_jpg %>
-        <% end %>
+        <%= render partial: "follows/load_follows" %>
       </div>
     </div>
   </div>

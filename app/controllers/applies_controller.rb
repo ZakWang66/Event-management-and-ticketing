@@ -58,11 +58,4 @@ class AppliesController < ApplicationController
             redirect_to request.referer || root_path
         end
     end
-
-    def render_result filename
-        respond_to do |f|
-            f.html { redirect_to request.referer || root_path }
-            f.js { render filename }
-        end
-    end
 end
