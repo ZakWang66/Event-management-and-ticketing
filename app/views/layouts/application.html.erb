@@ -13,7 +13,6 @@
   <body>
     <div class="bg" data-spy="scroll">
       <%= render 'layouts/header' %>
-      
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
@@ -23,3 +22,4 @@
     </div>
   </body>
 </html>
+

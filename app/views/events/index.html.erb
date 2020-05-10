@@ -25,11 +25,15 @@
 <% if @events.empty? %>
     <br><h6>There is no tweet yet. Follow other users to see their new events by searching with the name. Or write your own events!</h6>
 <% else %>
+    <%= javascript_pack_tag 'events' %>
+    <%= javascript_pack_tag 'hello_coffee' %>
     <div class="gallery">
-        <%= render 'event' %>
+        <%= render :partial => 'events', :object => @events %>
         <br>
     </div>
-    <%= will_paginate :partial => 'event' %>
+    <p class="pagination">
+        <%= link_to_next_page(@events, 'Next Page', :remote => true) %>
+    </p>   
 <% end %>                                         
 
 

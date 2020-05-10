@@ -33,4 +33,6 @@ class Event < ApplicationRecord
     def add_user(applicant)
         Participant.create(user: applicant, event_id: id, role: :audience)
     end
+
+    paginates_per 24
 end
