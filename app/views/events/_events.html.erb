@@ -1,7 +1,7 @@
 <% @events.each do |event| %>    
     <div class="images">
         <% if Picture.where(event_id: event[:id]).empty? %>
-            <%= image_pack_tag("poster#{event[:id] % 30 + 1}.jpg") %>
+            <%= image_pack_tag("poster#{event[:id] % 30}.jpg") %>
         <% else %>
             <%= image_tag(Picture.where(event_id: event[:id]).first.picture.url) %>
         <% end %>

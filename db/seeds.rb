@@ -7,7 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-100.times do 
+events_title = ["Mountain Bike","Beach Gym", "Street photograph", "Rock Gym", "Running Up", "Burn Yourself", "Let's Shovel!", "Kayaking on Charles", "Net Skywalker!", "Skydive Crazy",
+                "Surf on Blue", "Camp Fish", "Grass Skiing", "Camp under Galaxy", "Skateboard, be cool!", "Central Skating", "Sketch", "Burn Fat!!", "Luke Skydiver!", "Family Skating", 
+                "Just Golf", "Shadow", "Slide BMX", "Power!", "Kid Football", "Free Discussion", "Track Training", "Beach Running", "Desert Skydive", "Opera! Opera!"]
+100.times do |i|
     name = Faker::Name.name
     User.create(
         name: name,
@@ -16,10 +19,10 @@ require 'faker'
     )
 
     Event.create(
-        title: Faker::FunnyName.three_word_name,
+        title: events_title[i%30],
         price: Faker::Number.decimal(l_digits: 3, r_digits: 2),
         time: Faker::Date.in_date_period,
-        place: Faker::Address.full_address,
+        place: "Boston",
         description: Faker::GreekPhilosophers.quote
     )
 end
