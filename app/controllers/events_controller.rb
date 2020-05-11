@@ -6,21 +6,33 @@ class EventsController < ApplicationController
             @events = @events.where("title LIKE ?", "%#{params[:title]}%")
         end
 
-        if params[:sort_by]
-            @events = @events.order_list(params[:sort_by])
-        end
+        @events = sort(@events)
 
-        if params[:filt_by]
-            if params[:filt_by] == "more than 1000"
-                @events = @events.where("price > ?", 1000)
-            else
-                conditions = params[:filt_by].split("-")
-                @events = @events.filter_by_price(conditions)
-            end
-        end
+        @events = filter(@events)
+
         @events = @events.page(params[:page])
     end
 
+    def sort(events)
+        if params[:sort_by]
+            events.order_list(params[:sort_by])
+        else
+            events
+        end
+    end
+
+    def filter(events)
+        if params[:filt_by]
+            if params[:filt_by] == "more than 1000"
+                events.where("price > ?", 1000)
+            else
+                conditions = params[:filt_by].split("-")
+                events.filter_by_price(conditions)
+            end
+        else
+            events
+        end
+    end
     
     def new
         @url = "/events"
