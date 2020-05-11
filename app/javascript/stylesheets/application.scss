@@ -368,3 +368,19 @@ nav{
     width: 90%;
     margin: auto;
 }
+
+.hover_img {
+    height: 0;
+    overflow: hidden;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+}
+
+a:hover .hover_img {
+    height: auto;
+    opacity: 1;
+}
+
+.nounderline {
+    text-decoration: none !important
+}
