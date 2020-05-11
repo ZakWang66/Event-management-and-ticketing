@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div class="modal fade" id="log_in_modal" tabindex="-1" role="dialog" aria-labelledby="log_in_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <%= form_for(:session, url: log_in_path) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="log_in_label">Sign In/Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <h2>Sign In</h2>
+            <br>
+            <div class="form-group row">
+              <%= f.label :email, class: "col-sm-3"%>
+              <div class="col-sm-9">
+                <%= f.email_field :email, class:"form-control" %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <%= f.label :password, class: "col-sm-3" %>
+              <div class="col-sm-9">
+                <%= f.password_field :password, class:"form-control" %>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <%= f.submit "Sign In", class: "btn btn-primary col-sm-6" %>
+            </div>
+            <div class="text-center">
+              <p> New user? <%= link_to "Sign Up now!", new_user_path %></p>
+            </div>
+            <div class="text-center">
+              <%= link_to '/auth/google_oauth2', class:'btn border' do %>
+                <%= content_tag(:i, nil, class: "fab fa-lg fa-google text-danger") %>
+                <span>Sign in with Google</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    <% end %>
+  </div>
+</div>
