@@ -37,7 +37,7 @@ class FollowsController < ApplicationController
     if !name.nil?
         @result = @result.where("lower(name) like ?", "%#{name.downcase}%")
     end
-    @result = @result.paginate(page: params[:page], per_page:5)
+    @result = @result.page(params[:page])
   end
 
   def followee_exist?

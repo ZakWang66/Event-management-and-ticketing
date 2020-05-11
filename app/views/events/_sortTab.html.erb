@@ -1,11 +1,10 @@
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Sort by
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><%= link_to "price", events_path(sort_by: "price", filt_by: params[:filt_by]) %></li>
-        <li><%= link_to "date", events_path(sort_by: "date", filt_by: params[:filt_by]) %></li>
-        <li><%= link_to "oldest", events_path(sort_by: "oldest", filt_by: params[:filt_by]) %></li>
-    </ul>
+<div class="btn-group">
+  <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href=<%= events_path(sort_by: "price", filt_by: params[:filt_by]) %> >price</a>
+    <a class="dropdown-item" href=<%= events_path(sort_by: "date", filt_by: params[:filt_by]) %>>date</a>
+    <a class="dropdown-item" href=<%= events_path(sort_by: "oldest", filt_by: params[:filt_by]) %>>oldest</a>
+  </div>
 </div>
