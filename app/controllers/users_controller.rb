@@ -16,7 +16,8 @@ class UsersController < ApplicationController
             flash[:success] = "Sign up succedd. Please sign in!"
             redirect_to sign_in_path
         else
-            render 'new'
+            redirect_to root_path
+            # render 'new'
         end
     end
 
