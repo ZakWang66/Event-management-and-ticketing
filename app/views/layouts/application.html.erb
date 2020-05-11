@@ -16,9 +16,13 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <div class="jumbotron container">
-        <%= yield %>
-      </div>
+      <% if @title != "home" %>
+        <div class="jumbotron container">
+      <% else %>
+        <div class="full">
+      <% end %>
+          <%= yield %>
+        </div>
     </div>
   </body>
 </html>
