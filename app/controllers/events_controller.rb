@@ -139,7 +139,7 @@ class EventsController < ApplicationController
             p.update(params.require(:event).permit(:picture))
             flash[:success] = "Image uploaded"
         end
-        redirect_to "/events/#{params[:id]}/edit"
+        redirect_to "/events/#{params[:id]}/uploadImg"
     end
 
     def delete_img

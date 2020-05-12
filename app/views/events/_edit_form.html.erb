@@ -62,9 +62,15 @@
       <textarea class="form-control" name="description" id="description" required><%=@event[:description]%></textarea>
       <small class="form-text text-muted">Event description</small>
     </div>
-    <button type="submit" form="info" class="btn btn-primary">Submit</button>
-
   <% end %>
+
+  <div class="row" style="margin-left: 20px; margin-bottom: 20px;">
+    <button type="submit" form="info" class="btn btn-primary">Submit</button>
+    &nbsp;&nbsp;
+    <%= button_to "/events/#{@event[:id]}", class:"btn btn-secondary", method: :get do %>
+        Back
+    <% end %>
+  </div>
   
 </div>
 

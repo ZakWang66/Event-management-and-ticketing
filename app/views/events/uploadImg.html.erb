@@ -21,7 +21,13 @@
             <% } %>
         </div>
         <br><br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_img">Upload image</button>
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_img">Upload image</button>
+                &nbsp;&nbsp;
+                <%= button_to "/events/#{@event[:id]}", class:"btn btn-secondary", method: :get do %>
+                    Back
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
