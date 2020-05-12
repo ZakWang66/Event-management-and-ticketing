@@ -1,9 +1,9 @@
 <% @events.each do |event| %>    
     <div class="images">
-        <% if Picture.where(event_id: event[:id]).empty? %>
+        <% if event.images.empty? %>
             <%= image_pack_tag("poster#{event[:id] % 30}.jpg") %>
         <% else %>
-            <%= image_tag(Picture.where(event_id: event[:id]).first.picture.url) %>
+            <%= image_tag(event.images[0]) %>
         <% end %>
         <div class="event-info">
             <h4><%= event[:title] %></h4>

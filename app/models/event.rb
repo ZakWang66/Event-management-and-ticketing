@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+    has_many_attached :images
     has_many :participants
     has_many :users, through: :participants
 

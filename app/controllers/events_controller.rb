@@ -43,21 +43,13 @@ class EventsController < ApplicationController
     end
 
     def create
-        puts params.inspect
-        e = Event.new(
-            title:params[:title],
-            price:params[:price],
-            time: params[:event][:time],
-            place:params[:place],
-            description:params[:description],
-            created_at:Time.now.to_s
-        )
-        if e.save
+        @event = Event.new(event_params)
+        if @event.save
             flash[:success] = "Event created successfully"
         else
             flash[:danger]  = "Some problem occours, event was not created"
         end
-        Participant.create(user_id:session[:current_user_id], event_id:e.id, role: :organizer)
+        Participant.create(user_id:session[:current_user_id], event_id:@event.id, role: :organizer)
         redirect_to "/events"
     end
 
@@ -72,7 +64,7 @@ class EventsController < ApplicationController
     def uploadImg
         @title = "Images"
         @event = Event.find(params[:id])
-        @pictures = Picture.where(event_id:params[:id])
+        @pictures = @event.images
     end
 
     def update
@@ -81,14 +73,7 @@ class EventsController < ApplicationController
         if e.nil?
             flash[:danger]  = "No such event"
         else
-            e.update(
-                title:params[:title],
-                price:params[:price],
-                time: params[:event][:time],
-                place:params[:place],
-                description:params[:description],
-                created_at:Time.now.to_s
-            )
+            e.update(event_params)
             flash[:success]  = "Event updated"
         end
         redirect_to event_path(params[:id])
@@ -96,7 +81,7 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
-        @pictures = Picture.where(event_id:params[:id])
+        @pictures = @event.images
         @count = 0
         participant_relation = @event.participants.where(user_id:session[:current_user_id])
         @canApply = !is_expired_event(@event) && (participant_relation.empty? || participant_relation.first.role == "visitor" || participant_relation.first.role == "audience")
@@ -192,6 +177,10 @@ class EventsController < ApplicationController
 
     def is_expired_event(event)
         return event.time < Time.now
+    end
+
+    def event_params
+        params.require(:event).permit(:title, :price, :time, :place, :description, images: [])
     end
 
 end

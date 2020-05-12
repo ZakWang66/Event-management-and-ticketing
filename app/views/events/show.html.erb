@@ -26,10 +26,6 @@
           <div style="margin-left: auto; margin-right: 20px;">
             <% if !(Participant.where(event_id:@event[:id], role:1).empty?) && session[:current_user_id] == Participant.where(event_id:@event[:id], role:1).first.user_id %>
               <div class="row">
-                <%= button_to "/events/#{@event["id"]}/uploadImg", method: :get, class:"btn btn-warning" do %>
-                  Upload images
-                <% end %>
-                &nbsp;&nbsp;
                 <%= button_to "/events/#{@event["id"]}/edit", method: :get, class:"btn btn-primary" do %>
                   Edit
                 <% end %>

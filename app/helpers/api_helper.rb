@@ -33,10 +33,10 @@ module ApiHelper
                     content_tag(:h4, event.title, class: "card-title text-center") +
                     content_tag(:hr, nil) + 
                     content_tag(:div, nil, class: "hover_img text-center") do
-                        if Picture.where(event_id: event[:id]).empty?
-                            image_pack_tag("poster#{event[:id] % 30 + 1}.jpg", height: "100px")
+                        if event.images.empty?
+                            image_pack_tag("poster#{event[:id] % 30}.jpg", height: "100px")
                         else
-                            image_tag(Picture.where(event_id: event[:id]).first.picture.url, height: "100px")
+                            image_tag(event.images[0], height: "100px")
                         end
                     end +
                     content_tag(:div, nil, class: "row") do

@@ -14,7 +14,8 @@
 
     <div class="form-group">
       <label>Title</label>
-      <input type="text" class="form-control" name="title" id="title" value="<%=@event[:title]%>" required>
+      <br>
+      <%= f.text_field :title%>
       <small class="form-text text-muted">Title of the event</small>
     </div>
     <br>
@@ -29,7 +30,8 @@
 
     <div class="form-group">
       <label>Place</label>
-      <input type="text" class="form-control" name="place" id="place" value="<%=@event[:place]%>" style="width: 99%;" required>
+      <br>
+      <%= f.text_field :place, id:"place" %>
       <script>
         function initAutocomplete() {
           // Create the autocomplete object, restricting the search predictions to
@@ -52,16 +54,25 @@
 
     <div class="form-group">
       <label>Price</label>
-      <input type="text" class="form-control" name="price" id="price" value="<%=@event[:price]%>">
+      <br>
+      <%= f.text_field :price%>
       <small class="form-text text-muted">[Optional] Price of the event ticket</small>
     </div>
     <br>
 
     <div class="form-group">
       <label>Description</label>
-      <textarea class="form-control" name="description" id="description" required><%=@event[:description]%></textarea>
+      <br>
+      <%= f.text_area(:description, size: '50x10') %>
       <small class="form-text text-muted">Event description</small>
     </div>
+
+      <div class="form-group">
+        <label>Images</label>
+        <br>
+        <%= f.file_field :images, multiple: true %>
+        <small class="form-text text-muted">Event posters</small>
+      </div>
   <% end %>
 
   <div class="row" style="margin-left: 20px; margin-bottom: 20px;">

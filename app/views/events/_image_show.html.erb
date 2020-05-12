@@ -20,7 +20,7 @@
                 active
             <% end %>
         ">
-            <%=image_tag(p.picture.url, alt: "image", class: "d-block img-fluid")%>
+            <%=image_tag(p, alt: "image", class: "d-block img-fluid")%>
             <% @count += 1 %>
         </div>
     <% } %>
