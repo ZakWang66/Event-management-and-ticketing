@@ -22,12 +22,14 @@ class Event < ApplicationRecord
     scope :filter_by_price, -> (prices) {where("price > ? AND price <= ?", prices[0], prices[1])}
 
     def self.order_list(sort_order)
-        if sort_order == "price"
+        if sort_order == "price down"
             order(price: :desc)
-        elsif sort_order == "date"
+        elsif sort_order == "price up"
+            order(price: :asc)
+        elsif sort_order == "newest"
             order(time: :desc)
         else
-            order(created_at: :asc)
+            order(time: :asc)
         end
     end
 

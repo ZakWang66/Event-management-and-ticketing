@@ -3,8 +3,9 @@
     Sort by
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href=<%= events_path(sort_by: "price", filt_by: params[:filt_by]) %> >price</a>
-    <a class="dropdown-item" href=<%= events_path(sort_by: "date", filt_by: params[:filt_by]) %>>date</a>
+    <a class="dropdown-item" href=<%= events_path(sort_by: "price up", filt_by: params[:filt_by]) %> >price up</a>
+    <a class="dropdown-item" href=<%= events_path(sort_by: "price down", filt_by: params[:filt_by]) %>>price down</a>
+    <a class="dropdown-item" href=<%= events_path(sort_by: "newest", filt_by: params[:filt_by]) %>>newest</a>
     <a class="dropdown-item" href=<%= events_path(sort_by: "oldest", filt_by: params[:filt_by]) %>>oldest</a>
   </div>
 </div>
