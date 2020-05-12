@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  event: one
+  event: goSnowboarding
   applicant: one
 
 two:
-  event: two
+  event: goSleeping
   applicant: two

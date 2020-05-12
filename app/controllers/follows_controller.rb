@@ -5,13 +5,23 @@ class FollowsController < ApplicationController
   def create
     @user.follow(@followee)
     @user.save!
-    redirect_to request.referer || root_path
+    if params[:type] == "flip"
+      render_result "change_to_unfollow"
+    elsif params[:type] == "reload"
+      render_result "reload_follows"
+    end
   end
 
   def destroy
     @user.unfollow(@followee)
     @user.save!
-    redirect_to request.referer || root_path
+    if params[:type] == "flip"
+      render_result "change_to_follow"
+    elsif params[:type] == "delete"
+      render_result "delete_follows"
+    elsif params[:type] == "reload"
+      render_result "reload_follows"
+    end
   end
 
   def getFollows
@@ -27,7 +37,7 @@ class FollowsController < ApplicationController
     if !name.nil?
         @result = @result.where("lower(name) like ?", "%#{name.downcase}%")
     end
-    @result = @result.paginate(page: params[:page], per_page:5)
+    @result = @result.page(params[:page])
   end
 
   def followee_exist?

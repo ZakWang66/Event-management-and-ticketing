@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+    has_many_attached :images
     has_many :participants
     has_many :users, through: :participants
 
@@ -33,4 +34,6 @@ class Event < ApplicationRecord
     def add_user(applicant)
         Participant.create(user: applicant, event_id: id, role: :audience)
     end
+
+    paginates_per 24
 end

@@ -10,75 +10,79 @@
 
   
 
-  <%= form_tag(@url, id: "info", method: @method, style: "padding: 40px;") do %>
+  <%= form_for(@event, :html => { id: "info", method: @method, style: "padding: 40px;" } ) do |f| %>
 
     <div class="form-group">
       <label>Title</label>
-      <input type="text" class="form-control" name="title" id="title" value="<%=@event[:title]%>" required>
+      <br>
+      <%= f.text_field :title%>
       <small class="form-text text-muted">Title of the event</small>
     </div>
     <br>
 
     <div class="form-group">
       <label>Time</label>
-      <input type="text" class="form-control" name="time" id="time" value="<%=@event[:time]%>" required>
-      <small class="form-text text-muted">Time when the event begins</small>
+      <br>
+      <%= f.date_field :time, :required => true%>
+      <small class="form-text text-muted">Select the time when the event begins</small>
     </div>
     <br>
 
     <div class="form-group">
       <label>Place</label>
-      <input type="text" class="form-control" name="place" id="place" value="<%=@event[:place]%>" required>
+      <br>
+      <%= f.text_field :place, id:"place" %>
+      <script>
+        function initAutocomplete() {
+          // Create the autocomplete object, restricting the search predictions to
+          // geographical location types.
+          autocomplete = new google.maps.places.Autocomplete(
+              document.getElementById('place'), {types: ['geocode']});
+
+          // Avoid paying for data that you don't need by restricting the set of
+          // place fields that are returned to just the address components.
+          autocomplete.setFields(['address_component']);
+
+          // When the user selects an address from the drop-down, populate the
+          // address fields in the form.
+          autocomplete.addListener('place_changed', fillInAddress);
+        }
+      </script>
       <small class="form-text text-muted">Place of the event</small>
     </div>
     <br>
 
     <div class="form-group">
       <label>Price</label>
-      <input type="text" class="form-control" name="price" id="price" value="<%=@event[:price]%>">
+      <br>
+      <%= f.text_field :price%>
       <small class="form-text text-muted">[Optional] Price of the event ticket</small>
     </div>
     <br>
 
     <div class="form-group">
       <label>Description</label>
-      <textarea class="form-control" name="description" id="description" required><%=@event[:description]%></textarea>
+      <br>
+      <%= f.text_area(:description, size: '50x10') %>
       <small class="form-text text-muted">Event description</small>
     </div>
 
+      <div class="form-group">
+        <label>Images</label>
+        <br>
+        <%= f.file_field :images, multiple: true %>
+        <small class="form-text text-muted">Event posters</small>
+      </div>
   <% end %>
 
-  <div style="padding: 40px;">
-    <% if @title == "Edit Event" %>
-      <%= render 'image_upload' %>
+  <div class="row" style="margin-left: 20px; margin-bottom: 20px;">
+    <button type="submit" form="info" class="btn btn-primary">Submit</button>
+    &nbsp;&nbsp;
+    <%= button_to "/events/#{@event[:id]}", class:"btn btn-secondary", method: :get do %>
+        Back
     <% end %>
-  <button type="submit" form="info" class="btn btn-primary">Submit</button>
   </div>
-
+  
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="add_img" tabindex="-1" role="dialog" aria-labelledby="add_img_label" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <%= form_for( @event, method: "post", url: "/events/picture/upload/#{@event[:id]}" ) do |f| %>
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="add_img_label">Edit Profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <%= f.file_field :picture %>
-        </div>
-        <div class="modal-footer">
-            <div class="form-group row">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 &nbsp; &nbsp;
-                <%= f.submit "Save", class: "btn btn-primary" %>
-            </div>
-        </div>
-        </div>
-    <% end %>
-</div>
-</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&&libraries=places&callback=initAutocomplete&language=en" async defer></script>

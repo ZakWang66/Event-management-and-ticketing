@@ -5,9 +5,9 @@
 		<% if current_user?(user) %>
 			<div class="p-2 bg-success text-white">Current User</div>
 		<% elsif current_user.following?(user) %>
-			<%= link_to_unfollow current_user.id, user.id %>
+			<%= link_to_unfollow current_user.id, user.id, "reload" %>
 		<% else %>
-			<%= link_to_follow current_user.id, user.id %>
+			<%= link_to_follow current_user.id, user.id, "reload" %>
 		<% end %>
 	</li>
 <% end %>

@@ -23,13 +23,23 @@
             <%=@event["title"] %>
           </h4>
           
-          <div style="margin-left: auto; margin-right: 0;">
+          <div style="margin-left: auto; margin-right: 20px;">
             <% if !(Participant.where(event_id:@event[:id], role:1).empty?) && session[:current_user_id] == Participant.where(event_id:@event[:id], role:1).first.user_id %>
-              <%= button_to "/events/#{@event["id"]}/edit", method: :get, class:"btn btn-primary" do %>
-                Edit
-              <% end %>
+              <div class="row">
+                <%= button_to "/events/#{@event["id"]}/edit", method: :get, class:"btn btn-primary" do %>
+                  Edit
+                <% end %>
+              </div>
             <% else %>
-              <%= octicon "star", height:32, class:"octicon octicon-x close" %>
+              <% if @liked %>
+                <%= link_to "/events/#{@event["id"]}/dislike?" + {event_id: @event.id}.to_param, method: :post do %>
+                  <%= octicon "star", height:32, class:"octicon" %>
+                <% end %>
+              <% else %>
+                <%= link_to "/events/#{@event["id"]}/like?" + {event_id: @event.id}.to_param, method: :post do %>
+                  <%= octicon "star", height:32, class:"octicon close" %>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -38,13 +48,14 @@
         </h6>
         <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
           Place: <%=@event.place%>
+          <input id="place" value="<%=@event.place%>" hidden>
         </h6>
         <h6 class="card-subtitle text-muted" style="padding-top: 15px;">
           Price: $<%=@event.price%>
         </h6>
         <div style="padding-top: 20px;">
           <%=render 'gmap'%>
-          <div id="googleMap" style="width:300px;height:200px;"></div>
+          <div id="googleMap" style="width:360px;height:250px;"></div>
         </div>
       </div>
     </div>

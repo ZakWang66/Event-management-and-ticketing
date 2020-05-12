@@ -1,6 +1,10 @@
-$('#events').append('<%= j render(@events) %>');
-<% if @events.next_page %>
-    $('.pagination').replaceWith('<%= j will_paginate(@events) %>');
+$("<%=j render(:partial => 'events', :object => @events) %>")
+  .appendTo($(".gallery"));
+
+// Update pagination link
+<% if @events.last_page? %>
+  $('.pagination').html("That's all, folks!");
 <% else %>
-    $('.pagination').remove();
+  $('.pagination')
+    .html("<%=j link_to_next_page(@events, 'Next Page', :remote => true) %>");
 <% end %>

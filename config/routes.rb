@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   patch 'users/:id/update_pwd', to: 'users#updatePassword', as: 'update_pwd'
   get 'profile', to: 'profile#show'
   get 'api/get_events', to: 'api#getEvents', as: 'get_events'
-  post 'events/like', to: 'events#like', as: 'like_event'
-  post 'events/dislike', to: 'events#dislike', as: 'dislike_event'
+  post 'events/:id/like', to: 'events#like', as: 'like_event'
+  post 'events/:id/dislike', to: 'events#dislike', as: 'dislike_event'
   # post 'events/book', to: 'events#book', as: 'book_event'
   # post 'events/cancel', to: 'events#cancel', as: 'cancel_event'
   post 'events/picture/upload/:id', to: 'events#add_img'
@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   post 'applications/:id/disapprove', to: 'applies#disapprove', as: 'application_disapprove'
   get 'get_applications', to: 'applies#getApplications', as: 'get_applications'
   get ':user_id', to: 'index#show', as: 'index'
+  get '/events/:id/uploadImg', to:'events#uploadImg'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

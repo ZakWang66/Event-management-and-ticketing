@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :current_user?
     helper_method :logged_in?
+    helper_method :render_result
+
     def current_user
         return unless session[:current_user_id]
         @current_user ||= User.find_by(id: session[:current_user_id])
@@ -24,6 +26,13 @@ class ApplicationController < ActionController::Base
           @user =  current_user
         else
           redirect_to request.referer || root_path
+        end
+    end
+
+    def render_result filename
+        respond_to do |f|
+            f.html { redirect_to request.referer || root_path }
+            f.js { render filename }
         end
     end
 end

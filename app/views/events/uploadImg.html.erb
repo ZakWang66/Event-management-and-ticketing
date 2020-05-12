@@ -1,0 +1,59 @@
+<div style="padding: 40px;">
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar">
+                <ul class="nav navbar-nav navbar-left">
+                    <h5><b><%=@title%></b></h5>
+                </ul>
+            </nav>
+        </div>
+        <div class="card-body">
+        <div class="row">
+            <% @pictures.each { |p| %>
+            <div class="image col-sm-4">
+                <%=image_tag(p.picture.url, alt: "image", class: "gravatar")%>
+                <div class="mask-middle">
+                <%= button_to "/events/picture/delete/#{@event[:id]}/#{p[:id]}", method: :post, class:"btn btn-primary" do %>
+                    Remove
+                <% end %>  
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <br><br>
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_img">Upload image</button>
+                &nbsp;&nbsp;
+                <%= button_to "/events/#{@event[:id]}", class:"btn btn-secondary", method: :get do %>
+                    Back
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add_img" tabindex="-1" role="dialog" aria-labelledby="add_img_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <%= form_for( @event, method: "post", url: "/events/picture/upload/#{@event[:id]}" ) do |f| %>
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="add_img_label">Edit Profile</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <%= f.file_field :picture %>
+          </div>
+          <div class="modal-footer">
+              <div class="form-group row">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  &nbsp; &nbsp;
+                  <%= f.submit "Save", class: "btn btn-primary" %>
+              </div>
+          </div>
+          </div>
+      <% end %>
+  </div>
+</div>

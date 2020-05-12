@@ -6,21 +6,33 @@ class EventsController < ApplicationController
             @events = @events.where("title LIKE ?", "%#{params[:title]}%")
         end
 
-        if params[:sort_by]
-            @events = @events.order_list(params[:sort_by])
-        end
+        @events = sort(@events)
 
-        if params[:filt_by]
-            if params[:filt_by] == "more than 1000"
-                @events = @events.where("price > ?", 1000)
-            else
-                conditions = params[:filt_by].split("-")
-                @events = @events.filter_by_price(conditions)
-            end
-        end
-        @events = @events.paginate(page: params[:page], per_page: 24)
+        @events = filter(@events)
+
+        @events = @events.page(params[:page])
     end
 
+    def sort(events)
+        if params[:sort_by]
+            events.order_list(params[:sort_by])
+        else
+            events
+        end
+    end
+
+    def filter(events)
+        if params[:filt_by]
+            if params[:filt_by] == "more than 1000"
+                events.where("price > ?", 1000)
+            else
+                conditions = params[:filt_by].split("-")
+                events.filter_by_price(conditions)
+            end
+        else
+            events
+        end
+    end
     
     def new
         @url = "/events"
@@ -31,20 +43,13 @@ class EventsController < ApplicationController
     end
 
     def create
-        e = Event.new(
-            title:params[:title],
-            price:params[:price],
-            time: params[:time],
-            place:params[:place],
-            description:params[:description],
-            created_at:Time.now.to_s
-        )
-        if e.save
+        @event = Event.new(event_params)
+        if @event.save
             flash[:success] = "Event created successfully"
         else
             flash[:danger]  = "Some problem occours, event was not created"
         end
-        Participant.create(user_id:session[:current_user_id], event_id:e.id, role: :organizer)
+        Participant.create(user_id:session[:current_user_id], event_id:@event.id, role: :organizer)
         redirect_to "/events"
     end
 
@@ -54,7 +59,12 @@ class EventsController < ApplicationController
         @method = "patch"
         @title = "Edit Event"
         @event = Event.find(params[:id])
-        @pictures = Picture.where(event_id:params[:id])
+    end
+
+    def uploadImg
+        @title = "Images"
+        @event = Event.find(params[:id])
+        @pictures = @event.images
     end
 
     def update
@@ -63,14 +73,7 @@ class EventsController < ApplicationController
         if e.nil?
             flash[:danger]  = "No such event"
         else
-            e.update(
-                title:params[:title],
-                price:params[:price],
-                time: params[:time],
-                place:params[:place],
-                description:params[:description],
-                created_at:Time.now.to_s
-            )
+            e.update(event_params)
             flash[:success]  = "Event updated"
         end
         redirect_to event_path(params[:id])
@@ -78,13 +81,38 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
-        @pictures = Picture.where(event_id:params[:id])
+        @pictures = @event.images
         @count = 0
         participant_relation = @event.participants.where(user_id:session[:current_user_id])
         @canApply = !is_expired_event(@event) && (participant_relation.empty? || participant_relation.first.role == "visitor" || participant_relation.first.role == "audience")
         @apply = @event.applications.where(user_id:session[:current_user_id])
         @apply = @apply.empty? ? nil : @apply.first
         @isBooked = !participant_relation.empty? && participant_relation.first.role == "audience"
+        @liked = !participant_relation.empty? && (participant_relation.first.role == "visitor" || participant_relation.last.role == "visitor")
+    end
+
+    def like
+        participant_relation = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id])
+        if !participant_relation.empty?
+            flash[:danger] = "You have already booked this event"
+        else
+            Participant.create(user_id:session[:current_user_id], event_id:params[:event_id], role: :visitor)
+            flash[:success] = "success!"
+        end
+        redirect_to "/events/#{params[:id]}"
+    end
+
+    def dislike
+        participant_relation = Participant.where(user_id:session[:current_user_id], event_id:params[:event_id], role: :visitor)
+        if participant_relation.empty?
+            flash[:danger] = "You have not yet like this event"
+        else
+            participant_relation.each { |p|
+                p.destroy
+            }
+            flash[:success] = "success!"
+        end
+        redirect_to "/events/#{params[:event_id]}"
     end
 
     def add_img
@@ -96,7 +124,7 @@ class EventsController < ApplicationController
             p.update(params.require(:event).permit(:picture))
             flash[:success] = "Image uploaded"
         end
-        redirect_to "/events/#{params[:id]}/edit"
+        redirect_to "/events/#{params[:id]}/uploadImg"
     end
 
     def delete_img
@@ -149,6 +177,10 @@ class EventsController < ApplicationController
 
     def is_expired_event(event)
         return event.time < Time.now
+    end
+
+    def event_params
+        params.require(:event).permit(:title, :price, :time, :place, :description, images: [])
     end
 
 end

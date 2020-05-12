@@ -1,0 +1,18 @@
+<% @events.each do |event| %>    
+    <div class="images">
+        <% if event.images.empty? %>
+            <%= image_pack_tag("poster#{event[:id] % 30}.jpg") %>
+        <% else %>
+            <%= image_tag(event.images[0]) %>
+        <% end %>
+        <div class="event-info">
+            <h4><%= event[:title] %></h4>
+            <p><%= event[:time] %></p>
+            <p><%= event[:price] %></p>
+            <%= button_to "/events/#{event[:id]}", method: :get do %>
+                View
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
