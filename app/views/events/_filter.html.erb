@@ -1,11 +1,11 @@
 <div class="btn-group">
   <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Filt
+    Filter
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item" href=<%= events_path(filt_by: "0-100", sort_by: params[:sort_by]) %> >0-100</a>
     <a class="dropdown-item" href=<%= events_path(filt_by: "100-500", sort_by: params[:sort_by]) %>>100-500</a>
-    <a class="dropdown-item" href=<%= events_path(filt_by: "500-1000", sort_by: params[:sort_by]) %>>100-500</a>
+    <a class="dropdown-item" href=<%= events_path(filt_by: "500-1000", sort_by: params[:sort_by]) %>>500-1000</a>
     <a class="dropdown-item" href=<%= events_path(filt_by: "more than 1000", sort_by: params[:sort_by]) %> >more than 1000</a>
   </div>
 </div>

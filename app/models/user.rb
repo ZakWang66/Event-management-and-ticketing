@@ -84,6 +84,8 @@ class User < ApplicationRecord
 
     # Delete an application
     def delete_application(application)
+        participant = Participant.where(user:application.applicant, event:application.event, participants: {role: :visitor})
+        participant.destroy_all if participant
         application.destroy
     end
 end
